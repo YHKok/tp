@@ -144,6 +144,9 @@ public class EditCommand extends Command {
                     && !student.getParentName().equals(editPersonDescriptor.getParentName().get())
                     && !model.hasPerson(new Parent(editPersonDescriptor.getParentName().get()))) {
                 throw new CommandException(MESSAGE_INVALID_PARENT);
+            } else if (student.getParentName() == null && editPersonDescriptor.getParentName().isPresent()
+                    && !model.hasPerson(new Parent(editPersonDescriptor.getParentName().get()))) {
+                throw new CommandException(MESSAGE_INVALID_PARENT);
             }
         }
     }
