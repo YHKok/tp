@@ -158,6 +158,12 @@ This section describes some noteworthy details on how certain features are imple
 
 ### Add Person feature
 
+This command allows a user to add a contact (Student/Parent) into EduConnect. You cannot add duplicate contacts into EduConnect.
+<br>Definition of Duplicate Contact: A contact with the **same name** as an existing contact.
+<br>Tutors often manage dozens of students and their parents.
+To keep their contact list concise and organised, EduConnect prevents duplicate contacts (same name) from being added.
+This ensures data integrity and reduces the risk of confusion during communication or scheduling.
+
 The following **truncated** activity diagram summarizes what happens when a user executes an add person command:
 
 ![AddPersonTruncatedActivityDiagram](images/AddPersonTruncatedActivityDiagram.png)
@@ -597,7 +603,7 @@ testers are expected to do more *exploratory* testing.
    1. Test Case - Adding a Student without Tags (Success)
       <br>`add n/Orion Lee p/98273648 a/1 HarbourFront Walk, Singapore 098585 r/student`
       <br>Expected:
-      - Success Message: "New person added: Onion Lee; Phone: 98273648; Address: 1 HarbourFront Walk, Singapore 098585; Role: student; Remark: ; Tags: ; Parent: null"
+      - Success Message: "New person added: Orion Lee; Phone: 98273648; Address: 1 HarbourFront Walk, Singapore 098585; Role: student; Remark: ; Tags: ; Parent: null"
       - New person named Orion Lee added to the contact list, the person should be tagged as a Student.
       - New person should appear at the bottom of the contacts list. If person does not appear, run the `list` command to verify the full list of contacts.
    2. Test Case - Adding a Student with Tags (Success)
@@ -741,7 +747,7 @@ testers are expected to do more *exploratory* testing.
       <br>`edit 1`
       <br>Expected:
       - Error Message: "At least one field to edit must be provided."
-      - No changes are made because the specified index is out of range.
+      - No changes are made because no fields were provided.
    6. Test Case - Editing with Invalid Phone number (Failure)
       <br>`edit 2 p/12`
       <br>Expected:

@@ -28,7 +28,7 @@ EduConnect is a desktop application that **helps tutors manage contact informati
 
    * `list` : Lists all contacts.
 
-   * `add n/John Doe p/98765432 a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * `add n/John Doe p/98765432 a/John street, block 123, #01-01 r/student` : Adds a contact named `John Doe` to the Address Book.
 
    * `delete 3` : Deletes the 3rd contact shown in the current list.
 
@@ -80,7 +80,7 @@ Adds a person to the address book.
 Format: `add n/NAME p/PHONE_NUMBER a/ADDRESS r/ROLE [par/PARENT_NAME] [t/TAG]…`
 
 * A person can have any number of tags (including 0).
-* A person can have one of the two roles: `student` or `parent`.
+* A person can have one of the two roles: `student` or `parent`, case-insensitive.
 * A person that has the `student` role can have `[TAGS]`.
 * A person that has the `parent` role **cannot** have `[TAGS]`.
 * You may specify a parent for a student using the `par/` prefix.
@@ -88,10 +88,11 @@ Format: `add n/NAME p/PHONE_NUMBER a/ADDRESS r/ROLE [par/PARENT_NAME] [t/TAG]…
   * The specified parent **must already exist** in the address book.
   * Only students can have a `par/` field — parents cannot have one.
   * `par/` field is not case-sensitive.
+* You cannot add another person with the **same name** into the address book.
 
 Examples:
 * `add n/John Doe p/98765432 a/902 East Coast Parkway, #01-26, Singapore r/parent`
-* `add n/Betsy Crowe p/87654321 a/742 Ang Mo Kio Avenue 5 12-30, Singapore r/student t/math`
+* `add n/Betsy Crowe p/87654321 a/742 Ang Mo Kio Avenue 5 12-30, Singapore  r/student t/math`
 * `add n/Lorem Ipsum p/97531864 a/6001 Beach Road 02-37 Golden Mile Tower, Singapore r/student`
 * `add n/Onion Lee p/99274628 a/1 HarbourFront Walk, Singapore 098585 r/student par/Keith`
 
@@ -309,7 +310,7 @@ Furthermore, certain edits can cause the AddressBook to behave in unexpected way
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER a/ADDRESS r/role [t/TAG] [par/PARENT]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 r/student t/math par/Keith Ho`
+**Add** | `add n/NAME p/PHONE_NUMBER a/ADDRESS r/role [t/TAG] [par/PARENT]…​` <br> e.g., `add n/James Ho p/98776253 a/123, Clementi Rd, 1234665 r/student t/math par/Keith Ho`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [t/TAG] [par/PARENT]…​`<br> e.g.,`edit 2 n/James Lee`
