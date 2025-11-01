@@ -9,9 +9,7 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Parent;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.Student;
 
 /**
  * Deletes a person identified using it's displayed index from the address book.
@@ -43,17 +41,6 @@ public class DeleteCommand extends Command {
         }
 
         Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
-
-        // If person to delete is a student, we clean up the parent's references
-        if (personToDelete instanceof Parent parent) {
-            model.destroyStudentLinks(parent);
-        }
-
-        // If person to delete is a parent, we clean up the student's references
-        if (personToDelete instanceof Student student) {
-            model.destroyParentLink(student);
-        }
-
         model.deletePerson(personToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, Messages.format(personToDelete)));
     }

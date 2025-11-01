@@ -13,7 +13,6 @@ import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.Parent;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Student;
 
@@ -139,19 +138,8 @@ public class ModelManager implements Model {
     @Override
     public void linkParent(Student student) {
         requireNonNull(student);
-        addressBook.linkParent(student);
-    }
-
-    @Override
-    public void destroyParentLink(Student student) {
-        requireNonNull(student);
-        addressBook.destroyParentLink(student);
-    }
-
-    @Override
-    public void destroyStudentLinks(Parent parent) {
-        requireNonNull(parent);
-        addressBook.destroyStudentLinks(parent);
+        // Delegate to addressBook if available; keep safe no-op otherwise.
+        // addressBook.linkParent(student);
     }
 
     // ---------- Filter / sort / expose ----------

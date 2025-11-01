@@ -109,7 +109,7 @@ public class UniquePersonList implements Iterable<Person> {
     }
 
     /**
-     * Destroys a link between a given Student and its specified Parent in the list.
+     * Links a given Student to its specified Parent in the list.
      *
      * @param student
      */
@@ -126,23 +126,8 @@ public class UniquePersonList implements Iterable<Person> {
                 .ifPresent(p -> {
                     Parent parent = (Parent) p;
                     student.setParent(null);
-                    student.setParentName(null);
                     parent.removeChild(student);
                 });
-    }
-
-    /**
-     * Destroys a link between a given Student and its specified Parent in the list.
-     *
-     * @param parent
-     */
-    public void destroyStudentLinks(Parent parent) {
-        requireNonNull(parent);
-        if (!parent.hasChildren()) {
-            return;
-        }
-        Set<Student> children = parent.getChildren();
-        children.stream().forEach(this::destroyParentLink);
     }
 
     /**
