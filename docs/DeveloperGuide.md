@@ -4,13 +4,13 @@ title: Developer Guide
 ---
 
 * Table of Contents
-  {:toc}
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+No other third-party libraries are adapted over the course on developing EduConnect.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -37,7 +37,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** (consisting of classes [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java)) is in charge of the app launch and shut down.
+**`Main`** (consisting of classes [`Main`](https://github.com/AY2526S1-CS2103-F11-1/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2526S1-CS2103-F11-1/tp/blob/master/src/main/java/seedu/address/MainApp.java)) is in charge of the app launch and shut down.
 * At app launch, it initializes the other components in the correct sequence, and connects them up with each other.
 * At shut down, it shuts down the other components and invokes cleanup methods where necessary.
 
@@ -510,16 +510,20 @@ The command includes comprehensive error handling for cases such as:
 ### Non-Functional Requirements
 #### Portability
 1. Should work on any _mainstream OS_ as long as it has Java `17` or above installed.
+
 #### Performance & Efficiency
 2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+
 #### Reliability & Availability
 4. The application should not crash or lose data under normal usage conditions (adding, viewing, deleting contacts).
 5. The application should be able to recover gracefully from invalid inputs without terminating unexpectedly.
+
 #### Usability
 6. Error messages should be clear, concise, and actionable, enabling the user to correct mistakes quickly.
 7. Command feedback (success/error outputs) must be displayed in under 0.5 seconds to maintain responsiveness.
 8. The system should preserve the user’s original casing (e.g., “Alice Tan” not “alice tan”) to avoid frustration.
+
 #### Maintainability & Extensibility
 9. The system should be designed so that new features (e.g., search, filter, update contact) can be integrated with minimal modification to existing code.
 10. All source code should be documented with clear method/class descriptions to support future maintenance.
