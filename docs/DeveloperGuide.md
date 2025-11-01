@@ -222,21 +222,6 @@ The `edit session` command modifies an existing session in the address book. The
 4. **Committing**: The address book state is committed to the `addressBookStateList`. The `currentStatePointer` is not changed as the user is not undoing or redoing any commands.
 5. **Saving the state**: The `addressBookStateList` is saved to disk to persist the state of the address book.
 
-### ViewSession (day-only)
-
-**Intent**  
-List all students who have at least one session on a specified weekday, ordered by the earliest start time on that day. Supports both legacy single `SessionSlot` and the newer multi-session `Student.sessions`.
-
----
-
-**Command format**
-
-```text
-viewsession: List all sessions on a day; earliest first.
-Parameters: d/DAY
-Example: viewsession d/Tuesday
-```
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**

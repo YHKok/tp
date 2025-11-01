@@ -225,7 +225,7 @@ Examples:
 
 View the session(s) of the specified day from the address book. 
 
-The sessions will be returned in order, sorted by earliest start date.
+The sessions will be returned in order, sorted by earliest start time.
 
 If multiple sessions have the same start time, they will be further sorted 
 by lexicographic ordering of the contact name. 
