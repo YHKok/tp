@@ -4,6 +4,8 @@ import static java.util.stream.Collectors.joining;
 
 import java.util.Objects;
 
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Parent;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Student;
 import seedu.address.model.tag.Tag;
@@ -61,6 +63,11 @@ public final class PersonViewFormatter {
         if (p instanceof Student s) {
             sb.append("Parent: ").append(parent).append(System.lineSeparator());
             sb.append("Tags: ").append(tags).append(System.lineSeparator());
+        }
+        if (p instanceof Parent par) {
+            sb.append("Children: ").append(par.getChildren().isEmpty() ? "-"
+                    : par.getChildren().stream().map(Student::getName).map(Name::toString).sorted()
+                            .collect(joining(", "))).append(System.lineSeparator());
         }
         sb.append("Remark: ").append(remark);
         return sb.toString();
