@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.person.Parent;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Student;
 
@@ -102,6 +103,20 @@ public interface Model {
      * @param student target; not null
      */
     void linkParent(Student student);
+
+    /**
+     * Destroys link between student and parent from Parent side.
+     * Called by Delete Command pre-delete.
+     * @param parent target; not null
+     */
+    void destroyStudentLinks(Parent parent);
+
+    /**
+     * Destroys link between student and parent from Student side.
+     * Called by Delete Command pre-delete.
+     * @param student target; not null
+     */
+    void destroyParentLink(Student student);
 
     // ---------- Filter / sort / expose ----------
 
