@@ -89,7 +89,8 @@ Format: `add n/NAME p/PHONE_NUMBER a/ADDRESS r/ROLE [par/PARENT_NAME] [t/TAG]…
   * The specified parent **must already exist** in the address book.
   * Only students can have a `par/` field — parents cannot have one.
   * `par/` field is not case-sensitive.
-* You cannot add another person with the **same name** into the address book.
+* You cannot add a duplicate person into the address book.
+  * Definition of Duplicate Person: Person with **same name** and **same role**.
 
 Examples:
 * `add n/John Doe p/98765432 a/902 East Coast Parkway, #01-26, Singapore r/parent`
