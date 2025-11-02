@@ -55,9 +55,9 @@ public class Messages {
             builder.append("; Tags: ");
             student.getTags().forEach(builder::append);
             builder.append("; Parent: ")
-                    .append(student.getParentName());
+                    .append(student.getParentName() != null ? student.getParentName() : "-");
         } else if (person instanceof Parent parent) {
-            builder.append("; Children: ").append(parent.getChildren());
+            builder.append("; Children: ").append(parent.getChildrenNames());
         }
         return builder.toString();
     }
