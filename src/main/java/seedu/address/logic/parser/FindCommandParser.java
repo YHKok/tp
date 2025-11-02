@@ -60,17 +60,20 @@ public class FindCommandParser implements Parser<FindCommand> {
         NameContainsKeywordsPredicate namePredicate = new NameContainsKeywordsPredicate(name);
 
         Optional<String> maybeValue = argMultimap.getValue(PREFIX_ROLE);
-        String values = maybeValue.get();
-        String[] parts = values.split("\\s+");
         List<String> role = new ArrayList<>();
 
-        for (String part : parts) {
-            if (!part.isEmpty()) {
-                role.add(ParserUtil.parseRole(part).role); // can throw ParseException directly
+        if (!maybeValue.isEmpty()) {
+            String value = maybeValue.get();
+            String[] parts = value.split("\\s+");
+
+            for (String part : parts) {
+                if (!part.isEmpty()) {
+                    role.add(ParserUtil.parseRole(part).role); // can throw ParseException
+                }
             }
         }
 
-        if (argMultimap.getValue(PREFIX_ROLE).isPresent() && role.isEmpty()) {
+        if (maybeValue.isPresent() && role.isEmpty()) {
             throw new ParseException(Role.MESSAGE_CONSTRAINTS);
         }
 
