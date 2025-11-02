@@ -99,11 +99,15 @@ Examples:
 * `add n/Lorem Ipsum p/97531864 a/6001 Beach Road 02-37 Golden Mile Tower, Singapore r/student`
 * `add n/Onion Lee p/99274628 a/1 HarbourFront Walk, Singapore 098585 r/student par/Keith`
 
+![exampleAdd.png](images/exampleAdd.png)
+
 ### Listing all persons : `list`
 
 Shows a list of all persons in the address book.
 
 Format: `list`
+
+![exampleList.png](images/exampleList.png)
 
 ### Editing a person : `edit`
 
@@ -129,6 +133,8 @@ Examples:
 *  `edit 1 p/91234567` Edits the phone number of the 1st person to be `91234567`.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 *  `edit 3 n/Alex Yeo par/Keith` Edits the name and parent of the 3rd person to be `Alex Yeo` and their parent to be `Keith`. (Assuming `Keith` is a Parent that already exists in the address book)
+
+![exampleEdit.png](images/exampleEdit.png)
 
 ### Locating persons by name, role or tag: `find`
 
@@ -163,6 +169,8 @@ Format: `delete INDEX`
 * The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
+![exampleDelete.png](images/exampleDelete.png)
+
 Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find n/Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
@@ -180,6 +188,8 @@ Format: `remark INDEX rm/REMARK`
 Examples:
 * `remark 1 rm/Weak at math` leaves a remark on the 1st person in list.
 
+![exampleRemark.png](images/exampleRemark.png)
+
 ### View detail of an entry: `view`
 
 View the detail of the specified person from the address book.
@@ -187,8 +197,8 @@ View the detail of the specified person from the address book.
 Format: `view INDEX`
 
 * The result is displayed in the app as a list.
-![viewResult.png](images/viewResult.png)
 * The index refers to the index number shown in the displayer person list.
+![viewResult.png](images/viewResult.png)
 
 ### Add session: `addsession`
 
@@ -209,6 +219,8 @@ Examples:
 * `addsession 1 d/Mon ti/3pm-5pm`
 * `addsession 1 d/Thur ti/9:30AM-11:45AM`
 
+![exampleAddsession.png](images/exampleAddsession.png)
+
 ### Delete session: `deletesession`
 
 Deletes a session of the specified person from the address book.
@@ -226,11 +238,13 @@ Examples:
 * `deletesession 1 d/Mon ti/3pm-5pm`
 * `deletesession 1 d/Thur ti/9:30AM-11:45AM`
 
+![exampleDeletesession.png](images/exampleDeletesession.png)
+
 ### View session: `viewsession`
 
 View the session(s) of the specified day from the address book. 
 
-The sessions will be returned in order, sorted by earliest start date.
+The sessions will be returned in order, sorted by earliest start time.
 
 If multiple sessions have the same start time, they will be further sorted 
 by lexicographic ordering of the contact name. 
@@ -247,10 +261,10 @@ Examples:
 
 The result is displayed in the app as a list.
 
-  ![viewSessionOutput.png](images/viewSessionOutput.png)
-
 Examples:
 * `viewsession d/Mon`
+
+![viewSessionOutput.png](images/viewSessionOutput.png)
 
 ### Editing a session : `editsession`
 
@@ -269,11 +283,15 @@ Examples:
 *  `editsession 1 d/Mon ti/3pm-5pm nd/Thur nti/9:30AM-11:45AM` Edits the session's day and time of the 1st person to be `Thur` and `9:30AM-11:45AM`.
 *  `editsession 2 d/Thur ti/9:30AM-11:45AM nd/Mon nti/3pm-5pm` Edits the session's day and time of the 2nd person to be `Mon` and `3pm-5pm`.
 
+![exampleEditsession.png](images/exampleEditsession.png)
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
 
 Format: `clear`
+
+![exampleClear.png](images/exampleClear.png)
 
 ### Exiting the program : `exit`
 
