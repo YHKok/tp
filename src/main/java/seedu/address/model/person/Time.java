@@ -43,6 +43,10 @@ public class Time {
         this.endTime = endMinutes;
     }
 
+    public int getStartMinutes() {
+        return startTime;
+    }
+
     /**
      * Returns the string value of this object.
      *
