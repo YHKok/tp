@@ -142,6 +142,7 @@ Format: `find [n/NAME] [r/ROLE] [t/TAG]`
 * Persons matching all given parameters will be returned e.g. `find n/Alex r/student` will return all `student` named `Alex`
 * For each parameter, persons matching at least one keyword will be returned (i.e. `OR` search).
     e.g. `n/Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* `find Alex` or `find whatever` will not work it will give the message `0 person listed`.
 
 Examples:
 * `find n/John` returns `john` and `John Doe`

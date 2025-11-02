@@ -212,6 +212,10 @@ To give more flexibility, we will allow
 **Intent**  
 List all students who have at least one session on a specified weekday, ordered by the earliest start time on that day. Supports both legacy single `SessionSlot` and the newer multi-session `Student.sessions`.
 
+
+### \[Proposed\] Enhanced Find Command
+Ability to find by other fields other than name, role and tag
+
 ---
 
 **Command format**
