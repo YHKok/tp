@@ -89,6 +89,7 @@ Format: `add n/NAME p/PHONE_NUMBER a/ADDRESS r/ROLE [par/PARENT_NAME] [t/TAG]…
   * The specified parent **must already exist** in EduConnect.
   * Only students can have a `par/` field — parents cannot have one.
   * `par/` field is not case-sensitive.
+  * The parent field can be updated to another Parent via the edit person command, but cannot be cleared/reset.
 * You cannot add a duplicate person into EduConnect.
   * Definition of Duplicate Person: Person with **same name** and **same role**.
 
