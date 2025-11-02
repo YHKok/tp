@@ -28,7 +28,7 @@ EduConnect is a desktop application that **helps tutors manage contact informati
 
    * `list` : Lists all contacts.
 
-   * `add n/John Doe p/98765432 a/John street, block 123, #01-01 r/student` : Adds a contact named `John Doe` to the Address Book.
+   * `add n/John Doe p/98765432 a/John street, block 123, #01-01 r/student` : Adds a contact named `John Doe` to EduConnect.
 
    * `delete 3` : Deletes the 3rd contact shown in the current list.
 
@@ -75,7 +75,7 @@ Format: `help`
 
 ### Adding a person: `add`
 
-Adds a person to the address book.
+Adds a person to EduConnect.
 
 Format: `add n/NAME p/PHONE_NUMBER a/ADDRESS r/ROLE [par/PARENT_NAME] [t/TAG]…`
 
@@ -86,10 +86,10 @@ Format: `add n/NAME p/PHONE_NUMBER a/ADDRESS r/ROLE [par/PARENT_NAME] [t/TAG]…
 * A person that has the `parent` role **cannot** have `[TAGS]`.
 * You may specify a parent for a student using the `par/` prefix.
   * Parents must be specified using their **full name** only.
-  * The specified parent **must already exist** in the address book.
+  * The specified parent **must already exist** in EduConnect.
   * Only students can have a `par/` field — parents cannot have one.
   * `par/` field is not case-sensitive.
-* You cannot add a duplicate person into the address book.
+* You cannot add a duplicate person into EduConnect.
   * Definition of Duplicate Person: Person with **same name** and **same role**.
 
 Examples:
@@ -100,13 +100,13 @@ Examples:
 
 ### Listing all persons : `list`
 
-Shows a list of all persons in the address book.
+Shows a list of all persons in EduConnect.
 
 Format: `list`
 
 ### Editing a person : `edit`
 
-Edits an existing person in the address book.
+Edits an existing person in EduConnect.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [a/ADDRESS] [t/TAG]…`
 
@@ -119,7 +119,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [a/ADDRESS] [t/TAG]…`
   * Only students can have tags; specifying `t/` for a parent will result in an error.
 * You may specify or change a student’s parent using the `par/` prefix.
   * Parents must be specified using their **full name** only.
-  * The specified parent **must already exist** in the address book.
+  * The specified parent **must already exist** in EduConnect.
   * Only students can have a parent; specifying `par/` for a parent will result in an error.
   * `par/` field is not case-sensitive.
 * A parent’s children (Student) **cannot be edited directly**. Relationships are updated automatically when their corresponding student entries are modified.
@@ -127,7 +127,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [a/ADDRESS] [t/TAG]…`
 Examples:
 *  `edit 1 p/91234567` Edits the phone number of the 1st person to be `91234567`.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
-*  `edit 3 n/Alex Yeo par/Keith` Edits the name and parent of the 3rd person to be `Alex Yeo` and their parent to be `Keith`. (Assuming `Keith` is a Parent that already exists in the address book)
+*  `edit 3 n/Alex Yeo par/Keith` Edits the name and parent of the 3rd person to be `Alex Yeo` and their parent to be `Keith`. (Assuming `Keith` is a Parent that already exists in EduConnect)
 
 ### Locating persons by name, role or tag: `find`
 
@@ -154,7 +154,7 @@ Examples:
 
 ### Deleting a person : `delete`
 
-Deletes the specified person from the address book.
+Deletes the specified person from EduConnect.
 
 Format: `delete INDEX`
 
@@ -163,12 +163,12 @@ Format: `delete INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
+* `list` followed by `delete 2` deletes the 2nd person in EduConnect.
 * `find n/Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
 ### Leaving a remark : `remark`
 
-Leaves a remark about the specified person from the address book.
+Leaves a remark about the specified person from EduConnect.
 
 Format: `remark INDEX rm/REMARK`
 
@@ -181,7 +181,7 @@ Examples:
 
 ### View detail of an entry: `view`
 
-View the detail of the specified person from the address book.
+View the detail of the specified person from EduConnect.
 
 Format: `view INDEX`
 
@@ -191,7 +191,7 @@ Format: `view INDEX`
 
 ### Add session: `addsession`
 
-Adds a session of the specified person from the address book.
+Adds a session of the specified person from EduConnect.
 
 Format: `addsession INDEX d/DAY ti/TIME`
 
@@ -210,7 +210,7 @@ Examples:
 
 ### Delete session: `deletesession`
 
-Deletes a session of the specified person from the address book.
+Deletes a session of the specified person from EduConnect.
 
 Format: `deletesession INDEX d/DAY ti/TIME`
 
@@ -227,7 +227,7 @@ Examples:
 
 ### View session: `viewsession`
 
-View the session(s) of the specified day from the address book. 
+View the session(s) of the specified day from EduConnect. 
 
 The sessions will be returned in order, sorted by earliest start date.
 
@@ -253,7 +253,7 @@ Examples:
 
 ### Editing a session : `editsession`
 
-Edits an existing session of a person in the address book.
+Edits an existing session of a person in EduConnect.
 
 Format: `editsession INDEX d/DAY ti/TIME nd/DAY nti/TIME`
 
@@ -270,7 +270,7 @@ Examples:
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the address book.
+Clears all entries from EduConnect.
 
 Format: `clear`
 
