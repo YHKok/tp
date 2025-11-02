@@ -57,7 +57,7 @@ public class Messages {
             builder.append("; Parent: ")
                     .append(student.getParentName());
         } else if (person instanceof Parent parent) {
-            builder.append("; Children: ").append(parent.getChildren());
+            builder.append("; Children: ").append(parent.getChildrenNames());
         }
         return builder.toString();
     }
