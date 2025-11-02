@@ -219,7 +219,7 @@ Format: `deletesession INDEX d/DAY ti/TIME`
 * The index **must be a positive integer** 1, 2, 3, …​
 * The index referred to **must** be a `Student`.
 * The start time **must not be greater than** the end time.
-* The session aiming to delete **must already exist** (same start time, end time, and occuring day) for the student in order for the command to succeed.
+* The session aiming to delete **must already exist** (same start time, end time, and occurring day) for the student in order for the command to succeed.
 
 Examples:
 * `deletesession 1 d/Mon ti/3pm-5pm`
@@ -311,18 +311,18 @@ Furthermore, certain edits can cause the EduConnect to behave in unexpected ways
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER a/ADDRESS r/role [t/TAG] [par/PARENT]…​` <br> e.g., `add n/James Ho p/98776253 a/123, Clementi Rd, 1234665 r/student t/math par/Keith Ho`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [t/TAG] [par/PARENT]…​`<br> e.g.,`edit 2 n/James Lee`
-**Find** | `find [n/NAME] [r/ROLE] [t/TAG]`<br> e.g., `find n/James Jake`
-**Remark** | `remark INDEX rm/REMARK` <br> e.g., `remark 1 rm/hardworking`
-**View** | `view INDEX` <br> e.g., `view 2`
-**Add Session** | `addsession INDEX d/DAY ti/TIME` <br> e.g., `addsession 2 d/Mon ti/9am-5pm`
-**Delete Session** | `deletesession INDEX d/DAY ti/TIME` <br> e.g., `deletesession 2 d/Mon ti/9am-5pm`
-**View Session** | `viewsession d/DAY` <br> e.g., `viewsession d/Mon`
-**Edit Session** | `editsession INDEX d/DAY ti/TIME nd/DAY nti/TIME` <br> e.g., `editsession 2 d/Thur ti/9:30AM-11:45AM nd/Mon nti/9.30am-11.45am`
-**List** | `list`
-**Help** | `help`
+| Action             | Format, Examples                                                                                                                                                     |
+|--------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**            | `add n/NAME p/PHONE_NUMBER a/ADDRESS r/role [t/TAG] [par/PARENT]…​` <br> e.g., `add n/James Ho p/98776253 a/123, Clementi Rd, 1234665 r/student t/math par/Keith Ho` |
+| **Clear**          | `clear`                                                                                                                                                              |
+| **Delete**         | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                  |
+| **Edit**           | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [t/TAG] [par/PARENT]…​`<br> e.g.,`edit 2 n/James Lee`                                                              |
+| **Find**           | `find [n/NAME] [r/ROLE] [t/TAG]`<br> e.g., `find n/James Jake`                                                                                                       |
+| **Remark**         | `remark INDEX rm/REMARK` <br> e.g., `remark 1 rm/hardworking`                                                                                                        |
+| **View**           | `view INDEX` <br> e.g., `view 2`                                                                                                                                     |
+| **Add Session**    | `addsession INDEX d/DAY ti/TIME` <br> e.g., `addsession 2 d/Mon ti/9am-5pm`                                                                                          |
+| **Delete Session** | `deletesession INDEX d/DAY ti/TIME` <br> e.g., `deletesession 2 d/Mon ti/9am-5pm`                                                                                    |
+| **View Session**   | `viewsession d/DAY` <br> e.g., `viewsession d/Mon`                                                                                                                   |
+| **Edit Session**   | `editsession INDEX d/DAY ti/TIME nd/DAY nti/TIME` <br> e.g., `editsession 2 d/Thur ti/9:30AM-11:45AM nd/Mon nti/9.30am-11.45am`                                      |
+| **List**           | `list`                                                                                                                                                               |
+| **Help**           | `help`                                                                                                                                                               |
