@@ -57,11 +57,9 @@ public class RemarkCommand extends Command {
         Person personToEdit = lastShownList.get(index.getZeroBased());
         Person editedPerson;
         if (personToEdit instanceof Student studentToEdit) {
-            editedPerson = new Student(studentToEdit.getName(), studentToEdit.getPhone(),
-                    studentToEdit.getAddress(), remark, studentToEdit.getTags(), studentToEdit.getSessions());
+            editedPerson = new Student(studentToEdit, remark);
         } else {
-            editedPerson = new Parent(personToEdit.getName(), personToEdit.getPhone(),
-                personToEdit.getAddress(), remark);
+            editedPerson = new Parent((Parent) personToEdit, remark);
         }
 
         model.setPerson(personToEdit, editedPerson);
@@ -76,7 +74,7 @@ public class RemarkCommand extends Command {
      */
     private String generateSuccessMessage(Person personToEdit) {
         String message = !remark.value.isEmpty() ? MESSAGE_ADD_REMARK_SUCCESS : MESSAGE_DELETE_REMARK_SUCCESS;
-        return String.format(message, personToEdit);
+        return String.format(message, Messages.format(personToEdit));
     }
 
     @Override

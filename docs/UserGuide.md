@@ -89,7 +89,9 @@ Format: `add n/NAME p/PHONE_NUMBER a/ADDRESS r/ROLE [par/PARENT_NAME] [t/TAG]…
   * The specified parent **must already exist** in the address book.
   * Only students can have a `par/` field — parents cannot have one.
   * `par/` field is not case-sensitive.
-* You cannot add another person with the **same name** into the address book.
+  * The parent field can be updated to another Parent via the edit person command, but cannot be cleared/reset.
+* You cannot add a duplicate person into the address book.
+  * Definition of Duplicate Person: Person with **same name** and **same role**.
 
 Examples:
 * `add n/John Doe p/98765432 a/902 East Coast Parkway, #01-26, Singapore r/parent`
@@ -142,6 +144,7 @@ Format: `find [n/NAME] [r/ROLE] [t/TAG]`
 * Persons matching all given parameters will be returned e.g. `find n/Alex r/student` will return all `student` named `Alex`
 * For each parameter, persons matching at least one keyword will be returned (i.e. `OR` search).
     e.g. `n/Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* `find Alex` or `find whatever` will not work it will give the message `0 person listed`.
 
 Examples:
 * `find n/John` returns `john` and `John Doe`
@@ -284,7 +287,7 @@ EduConnect data are saved in the hard disk automatically after any command that 
 
 ### Editing the data file
 
-EduConnect data are saved automatically as a JSON file `[JAR file location]/data/educonnect.json`. Advanced users are welcome to update data directly by editing that data file.
+EduConnect data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, EduConnect will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>

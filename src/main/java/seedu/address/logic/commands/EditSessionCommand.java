@@ -49,6 +49,8 @@ public class EditSessionCommand extends Command {
             + PREFIX_NEW_TIME + "1pm-2pm";
     public static final String MESSAGE_SUCCESS = "Edited session of %s.";
     public static final String MESSAGE_SESSION_NOT_FOUND = "Session not found.";
+    public static final String MESSAGE_DUPLICATE_SESSION = "This session already exists for the person";
+    public static final String MESSAGE_OVERLAPPING_SESSION = "This session overlaps with another existing session.";
 
     private final Index targetIndex;
     private final Day oldDay;
@@ -96,15 +98,30 @@ public class EditSessionCommand extends Command {
         }
     }
 
-    private Person toCopy(Student personToEdit, Day oldDay, Time oldTime, Day newDay, Time newTime) {
+    private Person toCopy(Student personToEdit, Day oldDay,
+                          Time oldTime, Day newDay, Time newTime) throws CommandException {
         assert personToEdit != null;
 
+        Session oldSession = new Session(oldDay, oldTime);
         // create new session
         Session newSession = new Session(newDay, newTime);
 
         // remove old session from person's existing sessions
         Set<Session> updatedSessions = new HashSet<>(personToEdit.getSessions());
-        updatedSessions.remove(new Session(oldDay, oldTime));
+        updatedSessions.remove(oldSession);
+
+        // Check if the new session is identical to *another* existing session.
+        if (updatedSessions.contains(newSession)) {
+            throw new CommandException(MESSAGE_DUPLICATE_SESSION);
+        }
+
+        // Check if the new session overlaps with *any other* existing session.
+        for (Session existingSession : personToEdit.getSessions()) {
+            if (existingSession.isOverlap(newSession)) {
+                throw new CommandException(MESSAGE_OVERLAPPING_SESSION);
+            }
+        }
+
         updatedSessions.add(newSession);
 
         return new Student(
