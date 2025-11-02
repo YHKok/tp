@@ -10,7 +10,8 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* Loh Xian Jie: AI tools involving code reuse: ChatGPT https://chatgpt.com/ and Gemini https://gemini.google.com/app
+* Scope and Purpose: verify code correctness, standardize formatting, improve javadoc clarity, troubleshoot test files
 
 --------------------------------------------------------------------------------------------------------------------
 
