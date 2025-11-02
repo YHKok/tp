@@ -8,7 +8,7 @@ skinparam wrapWidth 125
 start
 :User executes delete session command;
 if () then ([Person index given is a positive integer])
-    if () then (Day/time format given is valid])
+    if () then ([Day/time format given is valid])
         if () then ([Person index given is not larger than list size])
             if () then ([Person referenced is student])
                 if () then ([Session given exists])
