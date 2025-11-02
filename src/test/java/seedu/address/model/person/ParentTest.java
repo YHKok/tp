@@ -1,5 +1,7 @@
 package seedu.address.model.person;
 
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -47,5 +49,20 @@ public class ParentTest {
         assertTrue(parent.hasChildName(ALICE.getName()));
 
         assertThrows(UnsupportedOperationException.class, () -> parent.getChildren().add(BOB));
+    }
+
+    @Test
+    public void constructor_success() {
+        Parent parent = new Parent(new Name("Bob"), ALICE.getPhone(), ALICE.getAddress(), ALICE.getRemark());
+        parent.addChild(ALICE);
+        assertTrue(parent.hasChild(ALICE));
+        assertTrue(parent.hasChildName(ALICE.getName()));
+
+        Parent parentClone = new Parent(parent, new Remark("I'm a clone"));
+        assertEquals(parent.getName(), parentClone.getName());
+        assertEquals(parent.getPhone(), parentClone.getPhone());
+        assertEquals(parent.getAddress(), parentClone.getAddress());
+        assertEquals(parent.getChildren(), parentClone.getChildren());
+        assertEquals(parent.getChildrenNames(), parentClone.getChildrenNames());
     }
 }
