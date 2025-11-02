@@ -138,7 +138,7 @@ public class PersonTest {
         expected = Parent.class.getCanonicalName() + "{name=" + CHARLES.getName() + ", phone=" + CHARLES.getPhone()
                 + ", address=" + CHARLES.getAddress() + ", role=" + CHARLES.getRole()
                 + ", remark=" + CHARLES.getRemark()
-                + ", children=" + CHARLES.getChildren() + "}";
+                + ", children=" + CHARLES.getChildrenNames() + "}";
         assertEquals(expected, CHARLES.toString());
     }
 }
