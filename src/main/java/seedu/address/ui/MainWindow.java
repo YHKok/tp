@@ -25,6 +25,8 @@ public class MainWindow extends UiPart<Stage> {
 
     private static final String FXML = "MainWindow.fxml";
 
+    private static final String APP_TITLE = "EduConnect";
+
     private final Logger logger = LogsCenter.getLogger(getClass());
 
     private Stage primaryStage;
@@ -63,6 +65,8 @@ public class MainWindow extends UiPart<Stage> {
         // Set dependencies
         this.primaryStage = primaryStage;
         this.logic = logic;
+
+        this.primaryStage.setTitle(APP_TITLE);
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
