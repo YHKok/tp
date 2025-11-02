@@ -123,7 +123,7 @@ How the parsing works:
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
+* stores the data of EduConnect i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
 * stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
@@ -158,7 +158,7 @@ This section describes some noteworthy details on how certain features are imple
 
 ### Add Person feature
 
-This command allows a user to add a contact (Student/Parent) into EduConnect. You cannot add duplicate contacts into EduConnect.
+This command allows a user to add a contact (Student/Parent) into EduConnect. You cannot add duplicate contacts into EduConnect.  
 <br>Definition of Duplicate Contact: A contact with the **same name** as an existing contact.
 <br>Tutors often manage dozens of students and their parents.
 To keep their contact list concise and organised, EduConnect prevents duplicate contacts (same name) from being added.
@@ -323,7 +323,7 @@ The command includes comprehensive error handling for cases such as:
 
 ## Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise.)
+(For all use cases below, the **System** is `EduConnect` and the **Actor** is the `user`, unless specified otherwise.)
 
 ### UC01 — Add a student contact
 **Goal**: Create a new student entry with name, address, and phone.  
