@@ -173,7 +173,7 @@ Leaves a remark about the specified person from the address book.
 Format: `remark INDEX rm/REMARK`
 
 * Leaves a remark about the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayer person list.
+* The index refers to the index number shown in the displayed person list.
 * Using `remark` again for the same person **overwrites** previous remark.
 
 Examples:
@@ -187,7 +187,7 @@ Format: `view INDEX`
 
 * The result is displayed in the app as a list.
 ![viewResult.png](images/viewResult.png)
-* The index refers to the index number shown in the displayer person list.
+* The index refers to the index number shown in the displayed person list.
 
 ### Add session: `addsession`
 
