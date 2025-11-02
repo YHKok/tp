@@ -142,7 +142,7 @@ The `Model` component,
 <img src="images/StorageClassDiagram.png" width="550" />
 
 The `Storage` component,
-* can save both address book data and user preference data in JSON format, and read them back into corresponding objects.
+* can save both data of EduConnect and user preference data in JSON format, and read them back into corresponding objects.
 * inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
@@ -205,7 +205,7 @@ The following activity diagram summarizes what happens when a user executes a de
 
 ![DeleteSessionActivityDiagram](images/DeleteSessionActivityDiagram.png)
 
-### ViewSession (day-only)
+### View session (day-only)
 
 To give more flexibility, we will allow 
 
@@ -225,13 +225,13 @@ Example: viewsession d/Tuesday
 
 ### Edit session
 
-The `edit session` command modifies an existing session in the address book. The implementation involves the following steps:
+The `edit session` command modifies an existing session in EduConnect. The implementation involves the following steps:
 
 1. **Parsing**: The command is parsed to extract the relevant information such as the index of the student, the day and time of the session, and the new day and time of the session if applicable.
 2. **Validation**: The command is validated to ensure that the index of the student is valid and that the new day and time of the session (if applicable) are valid.
-3. **Execution**: The session is modified in the address book. If the new day and time of the session are applicable, the session is updated with the new day and time. Otherwise, the session is deleted.
-4. **Committing**: The address book state is committed to the `addressBookStateList`. The `currentStatePointer` is not changed as the user is not undoing or redoing any commands.
-5. **Saving the state**: The `addressBookStateList` is saved to disk to persist the state of the address book.
+3. **Execution**: The session is modified in EduConnect. If the new day and time of the session are applicable, the session is updated with the new day and time. Otherwise, the session is deleted.
+4. **Committing**: The state of EduConnect is committed to the `addressBookStateList`. The `currentStatePointer` is not changed as the user is not undoing or redoing any commands.
+5. **Saving the state**: The `addressBookStateList` is saved to disk to persist the state of EduConnect.
 
 ### Implementation
 
@@ -349,7 +349,7 @@ Ability to find by other fields other than name, role and tag
    Use case ends.  
 
 **Extensions**
-* 2a. Address book is empty.
+* 2a. EduConnect is empty.
   * 2a1. System displays “no contacts” placeholder.  
     Use case ends.
 
@@ -566,7 +566,7 @@ testers are expected to do more *exploratory* testing.
 
 1. **Adding a Parent**
    - **Prerequisites**: 
-     1. Another Person with these names in the test cases do not already exist inside the address book.
+     1. Another Person with these names in the test cases do not already exist inside EduConnect.
    1. Test Case - Adding a Parent (Success)
       <br>`add n/Klaus Tay p/99837264 a/Cruise Centre 1 Maritime Square #02-127, 099253 r/parent`
       <br>Expected: 
@@ -577,17 +577,17 @@ testers are expected to do more *exploratory* testing.
       <br>`add n/Bob Lee p/89658345 a/150 SOUTH BRIDGE ROAD 11-04 FOOK HAI BUILDING r/parent t/math`
       <br>Expected:
       - Error Message: "Parents are NOT allowed to have tags!"
-      - Invalid person is **not added** to the address book.
+      - Invalid person is **not added** to EduConnect.
    3. Test Case - Adding a Parent with a Parent (Failure)
       <br>`add n/Peter Peterson p/92272634 a/123 Lorong 1 Toa Payoh #02-515, 310986 r/parent par/Bob Lee`
       <br>Expected:
       - Error Message: "Parents are NOT allowed to have parents!"
-      - Invalid person is **not added** to the address book.
+      - Invalid person is **not added** to EduConnect.
 
 
 2. **Adding a Student** 
    - **Prerequisites**: 
-     1. Another Person with these names in the test cases do not already exist inside the address book.
+     1. Another Person with these names in the test cases do not already exist inside EduConnect.
      2. Already completed the previous section on Adding a Parent.
    1. Test Case - Adding a Student without Tags (Success)
       <br>`add n/Orion Lee p/98273648 a/1 HarbourFront Walk, Singapore 098585 r/student`
@@ -622,49 +622,49 @@ testers are expected to do more *exploratory* testing.
       <br>`add n/Germaine Lee p/98927376 a/334 Aljunied Street Road #02-02 r/student par/3`
       <br>Expected:
       - Error Message: "Names should only contain alphabetic characters, spaces, hyphens, apostrophes, and it should not be blank"
-      - Invalid person is **not added** to the address book.
+      - Invalid person is **not added** to EduConnect.
 
 
 3. **Adding a Person**
    - **Prerequisites**: 
-     1. Another Person with these names in the test cases do not already exist inside the address book.
+     1. Another Person with these names in the test cases do not already exist inside EduConnectt.
      2. Please complete the previous 2 sections on Adding a Student and Adding a Parent.
    1. Test Case - Adding a Person with an Invalid Role (Failure)
       <br>`add n/Jane Tan p/91234567 a/21 Choa Chu Kang Ave 4, #05-01 r/teacher`
       <br>Expected:
       - Error Message: "Role should only be student or parent"
-      - Invalid person is **not added** to the address book.
+      - Invalid person is **not added** to EduConnect.
    2. Test Case - Adding a Person with an Invalid Phone Number (Failure)
       <br>`add n/Lim Boon Kee p/12345 a/19 Orchard Road, #03-04 r/student`
       <br>Expected:
        - Error Message: "Phone numbers should only contain numbers, start with 8 or 9 and it should be 8 digits long"
-       - Invalid person is **not added** to the address book.
+       - Invalid person is **not added** to EduConnect.
    3. Test Case - Adding a Person with an Invalid Name (Failure)
       <br>`add n/@@@### p/98761234 a/21 Serangoon Avenue 1, #02-17 r/parent`
       <br>Expected:
        - Error Message: "Names should only contain alphabetic characters, spaces, hyphens, apostrophes, and it should not be blank"
-       - Invalid person is **not added** to the address book.
+       - Invalid person is **not added** to EduConnect.
    4. Test Case - Adding a Person with an Invalid Address (Failure)
       <br>`add n/Amelia Tan p/98127634 a/ r/student`
       <br>Expected:
        - Error Message: "Addresses should be between 20 - 100 characters long and cantake any values except for special characters, and it should not be blank"
-       - Invalid person is **not added** to the address book.
+       - Invalid person is **not added** to EduConnect.
    5. Test Case - Adding a Duplicate Person (Failure)
       <br>`add n/Klaus Tay p/99837264 a/Cruise Centre 1 Maritime Square #02-127, 099253 r/parent`
       <br>Expected:
        - Error Message: "This person already exists in the address book"
-       - Invalid person is **not added** to the address book.
+       - Invalid person is **not added** to EduConnect.
 
 ### Editing a Person
 <br>**Prerequisites**:
-- The address book already contains several persons from the “Adding a Person” test cases, including at least one Parent (e.g. Klaus Tay) and one Student (e.g. Akira Lee).
+- EduConnect already contains several persons from the “Adding a Person” test cases, including at least one Parent (e.g. Klaus Tay) and one Student (e.g. Akira Lee).
 - Ensure that the person to be edited exists in the displayed list before performing each test case.
 
 1. **Editing a Parent**
    - Note: **ALL** the test cases in this section **MUST** be performed on a Parent contact or the results cannot be guaranteed.
    - **Please replace the `<INDEX>` portion of the test case with a valid index of a Parent contact in your copy of the address book before running the test case.**
    - **Prerequisites**:
-     1. There must be 1 existing Parent contact in the address book.
+     1. There must be 1 existing Parent contact in EduConnect.
    1. Test Case - Editing a Parent to add Tags (Failure)
       <br>`edit <INDEX> t/science`
       <br>Expected:
@@ -679,16 +679,16 @@ testers are expected to do more *exploratory* testing.
 
 2. **Editing a Student**
    - Note: **ALL** the test cases in this section **MUST** be performed on a Student contact or the results cannot be guaranteed.
-   - **Please replace the `<INDEX>` portion of the test case with a valid index of a Student contact in your copy of the address book before running the test case.**
+   - **Please replace the `<INDEX>` portion of the test case with a valid index of a Student contact in your copy of EduConnect before running the test case.**
    - **Prerequisites**:
-      1. There must be 1 existing Parent contact in the address book.
-      2. There must be 1 existing Student contact in the address book. 
+      1. There must be 1 existing Parent contact in EduConnect.
+      2. There must be 1 existing Student contact in EduConnect. 
    1. Test Case - Editing a Student's Parent (Success)
-      - Note: use the name of any existing parent contact in you address book if you do not have a Parent contact in your address book with the name Klaus Tay.
+      - Note: use the name of any existing parent contact in EduConnect if you do not have a Parent contact in EduConnect with the name Klaus Tay.
       <br>`edit <INDEX> par/Klaus Tay`
       <br>Expected:
       - Sample Success Message: "Edited Person: Tom Jones; Phone: 90001111; Address: 2 Keppel Road #01-05 HarbourFront, Singapore 098635; Role: student; Remark: ; Tags: [math]; Parent: Klaus Tay"
-      - The Student's Parent is updated to Klaus Tay (or whatever Parent's name you put), who already exists in the address book.
+      - The Student's Parent is updated to Klaus Tay (or whatever Parent's name you put), who already exists in EduConnect.
    2. Test Case - Editing a Student's Tags (Success)
       <br>`edit <INDEX> t/math t/science`
       <br>Expected:
@@ -703,7 +703,7 @@ testers are expected to do more *exploratory* testing.
       <br>`edit <INDEX> par/Nonexistent Parent`
       <br>Expected:
       - Error Message: "This parent does not exist in the address book"
-      - The specified Parent does not exist in the address book.
+      - The specified Parent does not exist in EduConnect.
       - No changes are made.
 
 
