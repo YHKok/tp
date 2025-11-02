@@ -158,6 +158,12 @@ This section describes some noteworthy details on how certain features are imple
 
 ### Add Person feature
 
+This command allows a user to add a contact (Student/Parent) into EduConnect. You cannot add duplicate contacts into EduConnect.
+<br>Definition of Duplicate Contact: A contact with the **same name** as an existing contact.
+<br>Tutors often manage dozens of students and their parents.
+To keep their contact list concise and organised, EduConnect prevents duplicate contacts (same name) from being added.
+This ensures data integrity and reduces the risk of confusion during communication or scheduling.
+
 The following **truncated** activity diagram summarizes what happens when a user executes an add person command:
 
 ![AddPersonTruncatedActivityDiagram](images/AddPersonTruncatedActivityDiagram.png)
@@ -183,6 +189,11 @@ The following activity diagram summarizes what happens when a user executes a re
 ![RemarkActivityDiagram](images/RemarkActivityDiagram.png)
 
 ### Add Session feature
+For the Add Session command, only the standard day formats — Mon, Tue, Wed, Thur, Fri, Sat, Sun or their full forms 
+(e.g., Monday, Friday) are accepted to keep inputs consistent.
+
+However, the View Session command is more flexible and also recognizes Thu or
+Thurs for convenience.
 
 The following activity diagram summarizes what happens when a user executes an addsession command:
 
@@ -196,10 +207,10 @@ The following activity diagram summarizes what happens when a user executes a de
 
 ### ViewSession (day-only)
 
+To give more flexibility, we will allow 
+
 **Intent**  
 List all students who have at least one session on a specified weekday, ordered by the earliest start time on that day. Supports both legacy single `SessionSlot` and the newer multi-session `Student.sessions`.
-
----
 
 **Command format**
 
@@ -221,6 +232,55 @@ The `edit session` command modifies an existing session in the address book. The
 3. **Execution**: The session is modified in the address book. If the new day and time of the session are applicable, the session is updated with the new day and time. Otherwise, the session is deleted.
 4. **Committing**: The address book state is committed to the `addressBookStateList`. The `currentStatePointer` is not changed as the user is not undoing or redoing any commands.
 5. **Saving the state**: The `addressBookStateList` is saved to disk to persist the state of the address book.
+
+### Implementation
+
+The edit session mechanism is facilitated by `EditSessionCommand` and `EditSessionCommandParser`. It extends `Command` and implements the following key operations:
+
+* `EditSessionCommand#execute()` - Executes the command to edit a session
+* `EditSessionCommand#toCopy()` - Creates a new `Person` with the updated session
+* `EditSessionCommandParser#parse()` - Parses the user input and creates a new `EditSessionCommand`
+
+Given below is an example usage scenario and how the edit session mechanism behaves at each step.
+
+#### Example Usage Scenario
+
+1. The user executes `editsession 1 d/Mon ti/12pm-1pm d/Tue ti/1pm-2pm` to change a session from Monday 12pm-1pm to Tuesday 1pm-2pm for the first student in the list.
+2. The `AddressBookParser` identifies the command word `editsession` and creates a new `EditSessionCommandParser`.
+3. The `EditSessionCommandParser` parses the arguments and creates a new `EditSessionCommand` with the provided index, old session details, and new session details.
+4. The `EditSessionCommand` is executed, which:
+    - Retrieves the target student from the filtered person list
+    - Verifies the student exists and has the specified session
+    - Creates a new `Student` object with the updated session
+    - Replaces the original student with the updated one in the model
+    - Updates the filtered person list
+
+#### Activity Diagram
+
+![EditCommandActivityDiagram.png](images/EditCommandActivityDiagram.png)
+
+#### Design Considerations
+
+**Aspect: How edit session executes:**
+
+* **Alternative 1 (current choice):** Create a new Student object with updated sessions
+    * Pros: Immutable objects ensure thread safety and make the code easier to reason about
+    * Cons: Slight performance overhead due to object creation
+
+* **Alternative 2:** Modify the existing Student object
+    * Pros: Better performance as no new object is created
+    * Cons: Mutable state can lead to bugs in a multi-threaded environment
+
+**Aspect: Error handling:**
+
+The command includes comprehensive error handling for cases such as:
+- Invalid index
+- Missing or invalid parameters
+- Non-existent session
+- Attempting to edit a non-student's session
+
+### \[Proposed\] Enhanced Find Command
+Ability to find by other fields other than name, role and tag
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -257,56 +317,6 @@ The `edit session` command modifies an existing session in the address book. The
 - Low (unlikely to have): `*`
 
 ![User Story Table](images/userStoryTable.png)
-
-## Edit Session Command
-
-The `editsession` command allows users to modify an existing session's day and/or time for a student in the address book.
-
-### Implementation
-
-The edit session mechanism is facilitated by `EditSessionCommand` and `EditSessionCommandParser`. It extends `Command` and implements the following key operations:
-
-* `EditSessionCommand#execute()` - Executes the command to edit a session
-* `EditSessionCommand#toCopy()` - Creates a new `Person` with the updated session
-* `EditSessionCommandParser#parse()` - Parses the user input and creates a new `EditSessionCommand`
-
-Given below is an example usage scenario and how the edit session mechanism behaves at each step.
-
-#### Example Usage Scenario
-
-1. The user executes `editsession 1 d/Mon ti/12pm-1pm d/Tue ti/1pm-2pm` to change a session from Monday 12pm-1pm to Tuesday 1pm-2pm for the first student in the list.
-2. The `AddressBookParser` identifies the command word `editsession` and creates a new `EditSessionCommandParser`.
-3. The `EditSessionCommandParser` parses the arguments and creates a new `EditSessionCommand` with the provided index, old session details, and new session details.
-4. The `EditSessionCommand` is executed, which:
-   - Retrieves the target student from the filtered person list
-   - Verifies the student exists and has the specified session
-   - Creates a new `Student` object with the updated session
-   - Replaces the original student with the updated one in the model
-   - Updates the filtered person list
-
-#### Activity Diagram
-
-![EditCommandActivityDiagram.png](images/EditCommandActivityDiagram.png)
-
-#### Design Considerations
-
-**Aspect: How edit session executes:**
-
-* **Alternative 1 (current choice):** Create a new Student object with updated sessions
-  * Pros: Immutable objects ensure thread safety and make the code easier to reason about
-  * Cons: Slight performance overhead due to object creation
-
-* **Alternative 2:** Modify the existing Student object
-  * Pros: Better performance as no new object is created
-  * Cons: Mutable state can lead to bugs in a multi-threaded environment
-
-**Aspect: Error handling:**
-
-The command includes comprehensive error handling for cases such as:
-- Invalid index
-- Missing or invalid parameters
-- Non-existent session
-- Attempting to edit a non-student's session
 
 ## Use cases
 
@@ -578,7 +588,7 @@ testers are expected to do more *exploratory* testing.
    1. Test Case - Adding a Student without Tags (Success)
       <br>`add n/Orion Lee p/98273648 a/1 HarbourFront Walk, Singapore 098585 r/student`
       <br>Expected:
-      - Success Message: "New person added: Onion Lee; Phone: 98273648; Address: 1 HarbourFront Walk, Singapore 098585; Role: student; Remark: ; Tags: ; Parent: null"
+      - Success Message: "New person added: Orion Lee; Phone: 98273648; Address: 1 HarbourFront Walk, Singapore 098585; Role: student; Remark: ; Tags: ; Parent: null"
       - New person named Orion Lee added to the contact list, the person should be tagged as a Student.
       - New person should appear at the bottom of the contacts list. If person does not appear, run the `list` command to verify the full list of contacts.
    2. Test Case - Adding a Student with Tags (Success)
@@ -722,7 +732,7 @@ testers are expected to do more *exploratory* testing.
       <br>`edit 1`
       <br>Expected:
       - Error Message: "At least one field to edit must be provided."
-      - No changes are made because the specified index is out of range.
+      - No changes are made because no fields were provided.
    6. Test Case - Editing with Invalid Phone number (Failure)
       <br>`edit 2 p/12`
       <br>Expected:
@@ -787,7 +797,7 @@ testers are expected to do more *exploratory* testing.
        Expected: The status message informing the user that the selected student is updated. The UI shows the newly added session in the student contact
 
     1. Test case: `addsession 1 d/Mons ti/1pm-3pm`<br>
-       Expected: No seession is added. Error details shown in the status message.
+       Expected: No session is added. Error details shown in the status message.
 
     1. Other incorrect delete commands to try: `addsession`, `addsession x d/Mons ti/1pm-3pm`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.

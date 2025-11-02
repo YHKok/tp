@@ -28,7 +28,7 @@ EduConnect is a desktop application that **helps tutors manage contact informati
 
    * `list` : Lists all contacts.
 
-   * `add n/John Doe p/98765432 a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * `add n/John Doe p/98765432 a/John street, block 123, #01-01 r/student` : Adds a contact named `John Doe` to the Address Book.
 
    * `delete 3` : Deletes the 3rd contact shown in the current list.
 
@@ -79,8 +79,9 @@ Adds a person to the address book.
 
 Format: `add n/NAME p/PHONE_NUMBER a/ADDRESS r/ROLE [par/PARENT_NAME] [t/TAG]…`
 
+* A person's phone number has to be a Singapore number.
 * A person can have any number of tags (including 0).
-* A person can have one of the two roles: `student` or `parent`.
+* A person can have one of the two roles: `student` or `parent`, case-insensitive.
 * A person that has the `student` role can have `[TAGS]`.
 * A person that has the `parent` role **cannot** have `[TAGS]`.
 * You may specify a parent for a student using the `par/` prefix.
@@ -88,10 +89,13 @@ Format: `add n/NAME p/PHONE_NUMBER a/ADDRESS r/ROLE [par/PARENT_NAME] [t/TAG]…
   * The specified parent **must already exist** in the address book.
   * Only students can have a `par/` field — parents cannot have one.
   * `par/` field is not case-sensitive.
+  * The parent field can be updated to another Parent via the edit person command, but cannot be cleared/reset.
+* You cannot add a duplicate person into the address book.
+  * Definition of Duplicate Person: Person with **same name** and **same role**.
 
 Examples:
 * `add n/John Doe p/98765432 a/902 East Coast Parkway, #01-26, Singapore r/parent`
-* `add n/Betsy Crowe p/87654321 a/742 Ang Mo Kio Avenue 5 12-30, Singapore r/student t/math`
+* `add n/Betsy Crowe p/87654321 a/742 Ang Mo Kio Avenue 5 12-30, Singapore  r/student t/math`
 * `add n/Lorem Ipsum p/97531864 a/6001 Beach Road 02-37 Golden Mile Tower, Singapore r/student`
 * `add n/Onion Lee p/99274628 a/1 HarbourFront Walk, Singapore 098585 r/student par/Keith`
 
@@ -140,6 +144,7 @@ Format: `find [n/NAME] [r/ROLE] [t/TAG]`
 * Persons matching all given parameters will be returned e.g. `find n/Alex r/student` will return all `student` named `Alex`
 * For each parameter, persons matching at least one keyword will be returned (i.e. `OR` search).
     e.g. `n/Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* `find Alex` or `find whatever` will not work it will give the message `0 person listed`.
 
 Examples:
 * `find n/John` returns `john` and `John Doe`
@@ -278,15 +283,15 @@ Format: `exit`
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+EduConnect data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-AddressBook data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+EduConnect data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
-Furthermore, certain edits can cause the AddressBook to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
+If your changes to the data file makes its format invalid, EduConnect will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
+Furthermore, certain edits can cause the EduConnect to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
@@ -294,7 +299,7 @@ Furthermore, certain edits can cause the AddressBook to behave in unexpected way
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous EduConnect home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -309,7 +314,7 @@ Furthermore, certain edits can cause the AddressBook to behave in unexpected way
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER a/ADDRESS r/role [t/TAG] [par/PARENT]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 r/student t/math par/Keith Ho`
+**Add** | `add n/NAME p/PHONE_NUMBER a/ADDRESS r/role [t/TAG] [par/PARENT]…​` <br> e.g., `add n/James Ho p/98776253 a/123, Clementi Rd, 1234665 r/student t/math par/Keith Ho`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [t/TAG] [par/PARENT]…​`<br> e.g.,`edit 2 n/James Lee`
