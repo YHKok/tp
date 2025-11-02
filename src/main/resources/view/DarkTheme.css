@@ -153,12 +153,20 @@
     -fx-background-color: #FFC107;  /* amber */
 }
 
-.thu {
+.thur {
     -fx-background-color: #FF5722;  /* orange */
 }
 
 .fri {
     -fx-background-color: #9C27B0;  /* purple */
+}
+
+.sat {
+    -fx-background-color: #E91E63;  /* pink */
+}
+
+.sun {
+    -fx-background-color: #795548;  /* brown */
 }
 
 .stack-pane {
