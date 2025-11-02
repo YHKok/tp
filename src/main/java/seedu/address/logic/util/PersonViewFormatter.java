@@ -65,9 +65,8 @@ public final class PersonViewFormatter {
             sb.append("Tags: ").append(tags).append(System.lineSeparator());
         }
         if (p instanceof Parent par) {
-            sb.append("Children: ").append(par.getChildren().isEmpty() ? "-"
-                    : par.getChildren().stream().map(Student::getName).map(Name::toString).sorted()
-                            .collect(joining(", "))).append(System.lineSeparator());
+            sb.append("Children: ").append(par.getChildrenNames().isEmpty() ? "-" : par.getChildrenNames().stream()
+                    .map(Name::toString).sorted().collect(joining(", "))).append(System.lineSeparator());
         }
         sb.append("Remark: ").append(remark);
         return sb.toString();
