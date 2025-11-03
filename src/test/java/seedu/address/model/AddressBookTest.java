@@ -85,6 +85,16 @@ public class AddressBookTest {
     }
 
     @Test
+    public void destroyParentLink_null_throwsNullPointerExecption() {
+        Assertions.assertThrows(NullPointerException.class, () -> addressBook.destroyParentLink(null));
+    }
+
+    @Test
+    public void destroyStudentLinks_null_throwsNullPointerExecption() {
+        Assertions.assertThrows(NullPointerException.class, () -> addressBook.destroyStudentLinks(null));
+    }
+
+    @Test
     public void getPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> addressBook.getPersonList().remove(0));
     }
