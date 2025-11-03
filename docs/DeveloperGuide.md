@@ -10,7 +10,8 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-No other third-party libraries are adapted over the course on developing `EduConnect`.
+* Loh Xian Jie: AI tools involving code reuse: ChatGPT https://chatgpt.com/ and Gemini https://gemini.google.com/app
+* Scope and Purpose: verify code correctness, standardize formatting, improve javadoc clarity, troubleshoot test files
 
 --------------------------------------------------------------------------------------------------------------------
 
