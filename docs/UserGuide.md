@@ -184,6 +184,7 @@ Format: `remark INDEX rm/REMARK`
 * Leaves a remark about the person at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
 * Using `remark` again for the same person **overwrites** previous remark.
+* To delete a remark, use `remark INDEX`, with no rm/ field.
 
 Examples:
 * `remark 1 rm/Weak at math` leaves a remark on the 1st person in list.
