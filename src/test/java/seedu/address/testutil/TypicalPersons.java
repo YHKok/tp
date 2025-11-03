@@ -1,5 +1,24 @@
 package seedu.address.testutil;
 
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_CHARLES;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_CHARLES;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_IVAN;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_JAMES;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_KELLY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_CHARLES;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_REMARK_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_REMARK_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_REMARK_CHARLES;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_SESSION;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_SUBJECT;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_SUBJECT2;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -11,8 +30,6 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Session;
 import seedu.address.model.person.Student;
 import seedu.address.model.person.Time;
-
-import static seedu.address.logic.commands.CommandTestUtil.*;
 
 /**
  * A utility class containing a list of {@code Person} objects to be used in tests.
