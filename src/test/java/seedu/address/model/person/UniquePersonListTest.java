@@ -194,6 +194,39 @@ public class UniquePersonListTest {
     }
 
     @Test
+    public void destroyStudentLinks_existingStudentAndExistingParent_allStudentsAndParentsUnlinked() {
+        Student testStudent = new StudentBuilder(IVAN).build();
+        Student testStudent2 = new StudentBuilder(KELLY).build();
+        uniquePersonList.add(CHARLES);
+        uniquePersonList.add(testStudent);
+        uniquePersonList.add(testStudent2);
+        uniquePersonList.resolveAllParentLinks();
+        assertTrue(CHARLES.hasChild(testStudent));
+        assertTrue(CHARLES.hasChildName(testStudent.getName()));
+        assertTrue(CHARLES.hasChild(testStudent2));
+        assertTrue(CHARLES.hasChildName(testStudent2.getName()));
+
+        uniquePersonList.destroyStudentLinks(CHARLES);
+        assertFalse(CHARLES.hasChildren());
+        assertTrue(CHARLES.getChildren().isEmpty());
+        assertTrue(CHARLES.getChildrenNames().isEmpty());
+    }
+
+    @Test
+    public void destroyStudentLinks_existingParentWithNoChildren_doNothing() {
+        uniquePersonList.add(CHARLES);
+        uniquePersonList.destroyStudentLinks(CHARLES);
+        assertFalse(CHARLES.hasChildren());
+        assertTrue(CHARLES.getChildren().isEmpty());
+        assertTrue(CHARLES.getChildrenNames().isEmpty());
+    }
+
+    @Test
+    public void destroyStudentLinks_nullPerson_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniquePersonList.destroyStudentLinks(null));
+    }
+
+    @Test
     public void remove_nullPerson_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniquePersonList.remove(null));
     }
