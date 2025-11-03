@@ -49,6 +49,8 @@ public class Parent extends Person {
         return children.contains(student);
     }
 
+    public boolean hasChildren() { return !this.children.isEmpty(); }
+
     public boolean hasChildName(Name name) {
         return childrenNames.contains(name);
     }
