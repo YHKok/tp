@@ -218,8 +218,6 @@ Format: `addsession INDEX d/DAY ti/TIME`
 * You cannot add a duplicated/overlap session to a student into EduConnect.
   * Definition of Duplicated session: A duplicated session is one that occurs on the same day with the same start and end times.
   * Definition of an Overlap session: An overlapping session is one that occurs on the same day and has a start or end time that conflicts with another session’s start or end time.
-* You can add a session to a parent via the data file but it will not be reflected in the UI.
-  * Parent is not supposed to have a session in the first place.
 * Refer [here](DeveloperGuide.md#add-session-feature) for more information.
 
 Examples:
