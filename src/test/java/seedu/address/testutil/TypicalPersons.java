@@ -1,22 +1,5 @@
 package seedu.address.testutil;
 
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_CHARLES;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_CHARLES;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_JAMES;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_CHARLES;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_REMARK_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_REMARK_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_REMARK_CHARLES;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_SESSION;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_SUBJECT;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_SUBJECT2;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -28,6 +11,8 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Session;
 import seedu.address.model.person.Student;
 import seedu.address.model.person.Time;
+
+import static seedu.address.logic.commands.CommandTestUtil.*;
 
 /**
  * A utility class containing a list of {@code Person} objects to be used in tests.
@@ -103,6 +88,22 @@ public class TypicalPersons {
             .withRemark(VALID_REMARK_BOB).build();
     public static final Student JAMES = new StudentBuilder()
             .withName(VALID_NAME_JAMES)
+            .withPhone(VALID_PHONE_BOB)
+            .withAddress(VALID_ADDRESS_BOB)
+            .withRemark(VALID_REMARK_BOB)
+            .withTags(VALID_TAG_SUBJECT, VALID_TAG_SUBJECT2)
+            .withParentName(VALID_NAME_CHARLES)
+            .build();
+    public static final Student IVAN = new StudentBuilder()
+            .withName(VALID_NAME_IVAN)
+            .withPhone(VALID_PHONE_BOB)
+            .withAddress(VALID_ADDRESS_BOB)
+            .withRemark(VALID_REMARK_BOB)
+            .withTags(VALID_TAG_SUBJECT, VALID_TAG_SUBJECT2)
+            .withParentName(VALID_NAME_CHARLES)
+            .build();
+    public static final Student KELLY = new StudentBuilder()
+            .withName(VALID_NAME_KELLY)
             .withPhone(VALID_PHONE_BOB)
             .withAddress(VALID_ADDRESS_BOB)
             .withRemark(VALID_REMARK_BOB)

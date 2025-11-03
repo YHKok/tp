@@ -1,15 +1,10 @@
 package seedu.address.model.person;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_SUBJECT;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.BOB;
-import static seedu.address.testutil.TypicalPersons.CHARLES;
-import static seedu.address.testutil.TypicalPersons.JAMES;
+import static seedu.address.testutil.TypicalPersons.*;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -113,11 +108,12 @@ public class UniquePersonListTest {
 
     @Test
     public void resolveParentLink_studentAndExistingParent_parentChildrenUpdated() {
+        Student testStudent = new StudentBuilder(IVAN).build();
         uniquePersonList.add(CHARLES);
-        uniquePersonList.add(JAMES);
-        uniquePersonList.resolveParentLink(JAMES);
-        assertTrue(CHARLES.hasChild(JAMES));
-        assertTrue(CHARLES.hasChildName(JAMES.getName()));
+        uniquePersonList.add(testStudent);
+        uniquePersonList.resolveParentLink(testStudent);
+        assertTrue(CHARLES.hasChild(testStudent));
+        assertTrue(CHARLES.hasChildName(testStudent.getName()));
     }
 
     @Test
@@ -135,31 +131,39 @@ public class UniquePersonListTest {
 
     @Test
     public void destroyParentLink_existingStudentAndExistingParent_parentChildrenRemoved() {
+        Student testStudent = new StudentBuilder(IVAN).build();
         uniquePersonList.add(CHARLES);
-        uniquePersonList.add(JAMES);
-        uniquePersonList.resolveParentLink(JAMES);
-        assertTrue(CHARLES.hasChild(JAMES));
-        assertTrue(CHARLES.hasChildName(JAMES.getName()));
+        uniquePersonList.add(testStudent);
+        uniquePersonList.resolveParentLink(testStudent);
+        assertTrue(CHARLES.hasChild(testStudent));
+        assertTrue(CHARLES.hasChildName(testStudent.getName()));
 
-        uniquePersonList.destroyParentLink(JAMES);
-        assertFalse(CHARLES.hasChild(JAMES));
-        assertFalse(CHARLES.hasChildName(JAMES.getName()));
+        uniquePersonList.destroyParentLink(testStudent);
+        assertFalse(CHARLES.hasChild(testStudent));
+        assertFalse(CHARLES.hasChildName(testStudent.getName()));
+        assertNull(testStudent.getParentName());
+        assertNull(testStudent.getParent());
     }
 
     @Test
     public void destroyParentLink_studentAndWithNoParent_nothingHappens() {
+        Student testStudent = new StudentBuilder(IVAN).build();
         uniquePersonList.add(CHARLES);
-        uniquePersonList.resolveParentLink(JAMES);
-        assertTrue(CHARLES.hasChild(JAMES));
-        assertTrue(CHARLES.hasChildName(JAMES.getName()));
+        uniquePersonList.resolveParentLink(testStudent);
+        assertTrue(CHARLES.hasChild(testStudent));
+        assertTrue(CHARLES.hasChildName(testStudent.getName()));
 
         uniquePersonList.destroyParentLink(ALICE);
-        assertTrue(CHARLES.hasChild(JAMES));
-        assertTrue(CHARLES.hasChildName(JAMES.getName()));
+        assertTrue(CHARLES.hasChild(testStudent));
+        assertTrue(CHARLES.hasChildName(testStudent.getName()));
+        assertNull(ALICE.getParentName());
+        assertNull(ALICE.getParent());
 
-        uniquePersonList.destroyParentLink(JAMES);
-        assertFalse(CHARLES.hasChild(JAMES));
-        assertFalse(CHARLES.hasChildName(JAMES.getName()));
+        uniquePersonList.destroyParentLink(testStudent);
+        assertFalse(CHARLES.hasChild(testStudent));
+        assertFalse(CHARLES.hasChildName(testStudent.getName()));
+        assertNull(testStudent.getParentName());
+        assertNull(testStudent.getParent());
     }
 
     @Test
@@ -169,11 +173,16 @@ public class UniquePersonListTest {
 
     @Test
     public void resolveAllParentLinks_existingStudentAndExistingParent_allStudentsAndParentsUpdated() {
+        Student testStudent = new StudentBuilder(IVAN).build();
+        Student testStudent2 = new StudentBuilder(KELLY).build();
         uniquePersonList.add(CHARLES);
-        uniquePersonList.add(JAMES);
+        uniquePersonList.add(testStudent);
+        uniquePersonList.add(testStudent2);
         uniquePersonList.resolveAllParentLinks();
-        assertTrue(CHARLES.hasChild(JAMES));
-        assertTrue(CHARLES.hasChildName(JAMES.getName()));
+        assertTrue(CHARLES.hasChild(testStudent));
+        assertTrue(CHARLES.hasChildName(testStudent.getName()));
+        assertTrue(CHARLES.hasChild(testStudent2));
+        assertTrue(CHARLES.hasChildName(testStudent2.getName()));
     }
 
     @Test
