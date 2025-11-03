@@ -110,14 +110,12 @@ public interface Model {
      * @param parent target; not null
      */
     void destroyStudentLinks(Parent parent);
-
     /**
      * Destroys link between student and parent from Student side.
      * Called by Delete Command pre-delete.
      * @param student target; not null
      */
     void destroyParentLink(Student student);
-
     // ---------- Filter / sort / expose ----------
 
     /**

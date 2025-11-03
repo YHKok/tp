@@ -119,7 +119,6 @@ public class UniquePersonList implements Iterable<Person> {
                 .filter(Student::hasParent)
                 .forEach(this::resolveParentLink);
     }
-
     /**
      * Destroys a link between a given Student and its specified Parent in the list.
      *

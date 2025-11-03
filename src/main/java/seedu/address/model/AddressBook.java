@@ -118,11 +118,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void destroyParentLink(Student student) {
         persons.destroyParentLink(student);
     }
-
     public void destroyStudentLinks(Parent parent) {
         persons.destroyStudentLinks(parent);
     }
-
     //// util methods
 
     @Override

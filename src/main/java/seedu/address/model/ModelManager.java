@@ -142,13 +142,11 @@ public class ModelManager implements Model {
         // Delegate to addressBook if available; keep safe no-op otherwise.
         addressBook.linkParent(student);
     }
-
     @Override
     public void destroyParentLink(Student student) {
         requireNonNull(student);
         addressBook.destroyParentLink(student);
     }
-
     @Override
     public void destroyStudentLinks(Parent parent) {
         requireNonNull(parent);
