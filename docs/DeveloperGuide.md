@@ -10,8 +10,9 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* Loh Xian Jie: AI tools involving code reuse: ChatGPT https://chatgpt.com/ and Gemini https://gemini.google.com/app
-* Scope and Purpose: verify code correctness, standardize formatting, improve javadoc clarity, troubleshoot test files
+* General: AI is used during coding as an auto-complete tool.
+* Loh Xian Jie: AI tools involving code reuse: [ChatGPT](https://chatgpt.com/) and [Gemini](https://gemini.google.com/app)
+  * Scope and Purpose: verify code correctness, standardize formatting, improve javadoc clarity, troubleshoot test files
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -196,7 +197,7 @@ For the Add Session command, only the standard day formats — Mon, Tue, Wed, Th
 However, the View Session command is more flexible and also recognizes Thu or
 Thurs for convenience.
 
-The following activity diagram summarizes what happens when a user executes an addsession command:
+The following activity diagram summarizes what happens when a user executes an add session command:
 
 ![AddSessionActivityDiagram](images/AddSessionActivityDiagram.png)
 
@@ -208,7 +209,9 @@ The following activity diagram summarizes what happens when a user executes a de
 
 ### View Session feature (day-only)
 
-To give more flexibility, we will allow 
+To give more flexibility, we allow recognition of multiple valid input for day formats: 
+1. `tue` and `tues` are both recognised as `tuesday`
+2. `thu`, `thur` and `thurs` are all recognised as `thursday`
 
 **Intent**  
 List all students who have at least one session on a specified weekday, ordered by the earliest start time on that day. Supports both legacy single `SessionSlot` and the newer multi-session `Student.sessions`.
@@ -233,8 +236,6 @@ The `edit session` command modifies an existing session in EduConnect. The imple
 3. **Execution**: The session is modified in EduConnect. If the new day and time of the session are applicable, the session is updated with the new day and time. Otherwise, the session is deleted.
 4. **Committing**: The state of EduConnect is committed to the `addressBookStateList`. The `currentStatePointer` is not changed as the user is not undoing or redoing any commands.
 5. **Saving the state**: The `addressBookStateList` is saved to disk to persist the state of EduConnect.
-
-### Implementation
 
 The edit session mechanism is facilitated by `EditSessionCommand` and `EditSessionCommandParser`. It extends `Command` and implements the following key operations:
 
@@ -355,18 +356,18 @@ Ability to find by other fields other than name, role and tag
     Use case ends.
 
 ### UC03 — Find contacts by name/role/tags
-**Goal**: Locate contacts by case-insensitive name matching or role.  
+**Goal**: Locate contacts by case-insensitive name matching, role and tags.  
 **Precondition**: At least one contact exists.  
 
 **MSS**
-1. User enters `find n/NAME` or `find r/ROLE` or `find n/NAME r/ROLE` or `find t/TAG`.
-2. System filters contacts whose names/role contain all provided keywords.
+1. User enters `find n/NAME` or `find r/ROLE` or `find n/NAME r/ROLE` or `find t/TAGS` or `find n/NAME r/ROLE t/TAGS`, etc.
+2. System filters contacts whose names, role and tag (provided that corresponding fields are provided) contain any of the provided keywords.
 3. System displays the filtered list with new indices.  
    Use case ends.  
 
 **Extensions**
 * 2a. No matches found.
-  * 2a1. System shows empty result with guidance to broaden search.  
+  * 2a1. System shows empty result.  
   Use case ends.
 
 ### UC04 — Delete a contact by index
@@ -388,12 +389,12 @@ Ability to find by other fields other than name, role and tag
     Use case ends.
 
 ### UC05 — View help
-**Goal**: Display command summary and usage.  
+**Goal**: Display user guide that contains command summaries and usage.  
 **Precondition**: Application is running.  
 
 **MSS**
 1. User enters `help`.
-2. System opens help window/panel with command formats and examples.  
+2. System opens help window/panel with link to user guide.  
    Use case ends.
 
 ### UC06 — Exit the application
@@ -451,7 +452,7 @@ Ability to find by other fields other than name, role and tag
     Use case ends.
 * 1b. Validation fails (e.g., invalid day/time or both)
   * 1b1. System shows error and usage hint.  
-    Use case resumes at step 1.
+    Use case ends.
 * 1c. Adding to a parent contact
   * 1c1. System shows an error message and keeps list unchanged.  
     Use case ends.
@@ -471,7 +472,7 @@ Ability to find by other fields other than name, role and tag
 
 **Extensions**
 * 1a. `I` is not a valid visible index (≤0 or > list size, or non-integer).
-  * 1a1. System shows error and keeps list unchanged.  
+  * 1a1. System shows an error message and keeps list unchanged.  
     Use case ends.
 * 1b. Validation fails (e.g., invalid day/time or both)
   * 1b1. System shows error and usage hint.  
@@ -480,7 +481,7 @@ Ability to find by other fields other than name, role and tag
   * 1c1. System shows an error message and keeps list unchanged.  
     Use case ends.
 * 1d. User attempts to delete a nonexistent tutoring session for a student.
-  * 1d1. System warns about nonexistence and aborts creation.  
+  * 1d1. System warns about nonexistence and aborts deletion.  
     Use case ends.
 
 ### UC11 - Edit a student's session
@@ -498,7 +499,8 @@ Ability to find by other fields other than name, role and tag
     * 1a1. System shows error and keeps list unchanged.  
       Use case ends.
 * 1b. Validation fails (e.g., invalid day/time)
-  * 1b1. System shows error and usage hint. Resume at step 1.
+  * 1b1. System shows error and usage hint.  
+    Use case ends.
 * 1c. Editing to a parent contact
   * 1c1. System shows error and keeps list unchanged.  
     Use case ends.
@@ -523,8 +525,6 @@ Ability to find by other fields other than name, role and tag
 #### Maintainability & Extensibility
 9. The system should be designed so that new features (e.g., search, filter, update contact) can be integrated with minimal modification to existing code.
 10. All source code should be documented with clear method/class descriptions to support future maintenance.
-
-*{More to be added}*
 
 ### Glossary
 
@@ -648,7 +648,7 @@ testers are expected to do more *exploratory* testing.
    4. Test Case - Adding a Person with an Invalid Address (Failure)
       <br>`add n/Amelia Tan p/98127634 a/ r/student`
       <br>Expected:
-       - Error Message: "Addresses should be between 20 - 100 characters long and cantake any values except for special characters, and it should not be blank"
+       - Error Message: "Addresses should be between 10 - 120 characters long and can take any values except for special characters, and it should not be blank"
        - Invalid person is **not added** to EduConnect.
    5. Test Case - Adding a Duplicate Person (Failure)
       <br>`add n/Klaus Tay p/99837264 a/Cruise Centre 1 Maritime Square #02-127, 099253 r/parent`
@@ -772,8 +772,6 @@ testers are expected to do more *exploratory* testing.
    
    1. Other incorrect remark commands to try: `remark`, `remark abc`, `remark 0`, `remark -1` <br>
       Expected: Similar to previous
-   
-   1. To view remarks on a person, use the `view` command. Refer to the [User Guide](UserGuide.md) for more details.
 
 ### Deleting a person
 
@@ -789,8 +787,6 @@ testers are expected to do more *exploratory* testing.
 
     1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
-
-1. _{ more test cases …​ }_
 
 ### Add session to a student
 
