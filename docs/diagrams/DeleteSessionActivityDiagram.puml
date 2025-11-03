@@ -1,8 +1,8 @@
 @startuml
 'https://plantuml.com/activity-diagram-beta
 skin rose
-skinparam ActivityFontSize 16
-skinparam ArrowFontSize 14
+skinparam ActivityFontSize 15
+skinparam ArrowFontSize 12
 skinparam wrapWidth 125
 
 start

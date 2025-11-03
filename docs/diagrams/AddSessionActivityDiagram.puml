@@ -2,6 +2,7 @@ AddSessionActivityDiagram.puml@startuml
 skin rose
 skinparam ActivityFontSize 15
 skinparam ArrowFontSize 12
+skinparam wrapWidth 100
 
 start
 :User executes "addsession" command;
