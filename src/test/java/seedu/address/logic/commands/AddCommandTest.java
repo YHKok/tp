@@ -23,6 +23,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.person.Parent;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Student;
 import seedu.address.testutil.StudentBuilder;
@@ -198,6 +199,18 @@ public class AddCommandTest {
         /** {@inheritDoc} */
         @Override
         public void linkParent(Student student) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        /** {@inheritDoc} */
+        @Override
+        public void destroyStudentLinks(Parent parent) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        /** {@inheritDoc} */
+        @Override
+        public void destroyParentLink(Student student) {
             throw new AssertionError("This method should not be called.");
         }
 
