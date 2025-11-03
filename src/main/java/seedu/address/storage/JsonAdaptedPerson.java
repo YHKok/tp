@@ -1,6 +1,10 @@
 package seedu.address.storage;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -105,9 +109,11 @@ class JsonAdaptedPerson {
                 .thenComparingInt(s -> s.getTime().getStartMinutes())).toList();
 
         for (int i = 0; i < personSessions.size() - 1; i++) {
-            Session a = personSessions.get(i), b = personSessions.get(i + 1);
-            if (a.isOverlap(b))
+            Session a = personSessions.get(i);
+            Session b = personSessions.get(i + 1);
+            if (a.isOverlap(b)) {
                 throw new IllegalValueException(OVERLAP_SESSION_MESSAGE_FORMAT);
+            }
         }
 
         if (name == null) {
