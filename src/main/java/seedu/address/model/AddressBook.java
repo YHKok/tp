@@ -115,16 +115,10 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.resolveAllParentLinks();
     }
 
-    /**
-     * Destroys the Link between a Student and its specified Parent in the list.
-     */
     public void destroyParentLink(Student student) {
         persons.destroyParentLink(student);
     }
 
-    /**
-     * Destroys the Link between a Parent and its Students in the List.
-     */
     public void destroyStudentLinks(Parent parent) {
         persons.destroyStudentLinks(parent);
     }
