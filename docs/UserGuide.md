@@ -28,7 +28,7 @@ EduConnect is a desktop application that **helps tutors manage contact informati
 
    * `list` : Lists all contacts.
 
-   * `add n/John Doe p/98765432 a/John street, block 123, #01-01 r/student` : Adds a contact named `John Doe` to the Address Book.
+   * `add n/John Doe p/98765432 a/John street, block 123, #01-01 r/student` : Adds a student contact named `John Doe` to EduConnect.
 
    * `delete 3` : Deletes the 3rd contact shown in the current list.
 
@@ -50,10 +50,10 @@ EduConnect is a desktop application that **helps tutors manage contact informati
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/math` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/math`, `t/math t/science` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
@@ -68,14 +68,13 @@ EduConnect is a desktop application that **helps tutors manage contact informati
 
 Shows a message explaining how to access the help page.
 
-![helpMessage.png](images/helpMessage.png)
-
 Format: `help`
 
+![helpMessage.png](images/helpMessage.png)
 
 ### Adding a person: `add`
 
-Adds a person to the address book.
+Adds a person to EduConnect.
 
 Format: `add n/NAME p/PHONE_NUMBER a/ADDRESS r/ROLE [par/PARENT_NAME] [t/TAG]…`
 
@@ -86,11 +85,11 @@ Format: `add n/NAME p/PHONE_NUMBER a/ADDRESS r/ROLE [par/PARENT_NAME] [t/TAG]…
 * A person that has the `parent` role **cannot** have `[TAGS]`.
 * You may specify a parent for a student using the `par/` prefix.
   * Parents must be specified using their **full name** only.
-  * The specified parent **must already exist** in the address book.
+  * The specified parent **must already exist** in EduConnect.
   * Only students can have a `par/` field — parents cannot have one.
   * `par/` field is not case-sensitive.
   * The parent field can be updated to another Parent via the edit person command, but cannot be cleared/reset.
-* You cannot add a duplicate person into the address book.
+* You cannot add a duplicate person into EduConnect.
   * Definition of Duplicate Person: Person with **same name** and **same role**.
 
 Examples:
@@ -103,7 +102,7 @@ Examples:
 
 ### Listing all persons : `list`
 
-Shows a list of all persons in the address book.
+Shows a list of all persons in EduConnect.
 
 Format: `list`
 
@@ -111,7 +110,7 @@ Format: `list`
 
 ### Editing a person : `edit`
 
-Edits an existing person in the address book.
+Edits an existing person in EduConnect.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [a/ADDRESS] [t/TAG]…`
 
@@ -124,7 +123,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [a/ADDRESS] [t/TAG]…`
   * Only students can have tags; specifying `t/` for a parent will result in an error.
 * You may specify or change a student’s parent using the `par/` prefix.
   * Parents must be specified using their **full name** only.
-  * The specified parent **must already exist** in the address book.
+  * The specified parent **must already exist** in EduConnect.
   * Only students can have a parent; specifying `par/` for a parent will result in an error.
   * `par/` field is not case-sensitive.
 * A parent’s children (Student) **cannot be edited directly**. Relationships are updated automatically when their corresponding student entries are modified.
@@ -132,7 +131,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [a/ADDRESS] [t/TAG]…`
 Examples:
 *  `edit 1 p/91234567` Edits the phone number of the 1st person to be `91234567`.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
-*  `edit 3 n/Alex Yeo par/Keith` Edits the name and parent of the 3rd person to be `Alex Yeo` and their parent to be `Keith`. (Assuming `Keith` is a Parent that already exists in the address book)
+*  `edit 3 n/Alex Yeo par/Keith` Edits the name and parent of the 3rd person to be `Alex Yeo` and their parent to be `Keith`. (Assuming `Keith` is a Parent that already exists in EduConnect)
 
 ![exampleEdit.png](images/exampleEdit.png)
 
@@ -142,26 +141,27 @@ Finds persons whose information matches/contains given criteria.
 
 Format: `find [n/NAME] [r/ROLE] [t/TAG]`
 
-* The search is case-insensitive. e.g `n/hans` will match `Hans`
+* The search is case-insensitive. e.g. `n/hans` will match `Hans`
 * At least one of the parameters must be provided.
 * The order of the keywords does not matter. e.g. `n/Hans Bo` will match `Bo Hans`
 * Only the name or the role can be searched.
-* Only full words will be matched e.g. `n/Han` will not match `Hans`, `r/stu` will not match `student`
+* Only full words will be matched e.g. `n/Han` will not match `Hans`, `r/stu` will not match `student`, `t/mat` will not match `math`.
 * Persons matching all given parameters will be returned e.g. `find n/Alex r/student` will return all `student` named `Alex`
 * For each parameter, persons matching at least one keyword will be returned (i.e. `OR` search).
     e.g. `n/Hans Bo` will return `Hans Gruber`, `Bo Yang`
-* `find Alex` or `find whatever` will not work it will give the message `0 person listed`.
+* `find Alex` or `find whatever` will not work and system will return the message `0 person listed`.
 
 Examples:
 * `find n/John` returns `john` and `John Doe`
 * `find n/alex david` returns `Alex Yeoh`, `David Li`<br>
-![findAlexDavidResult.png](images/findAlexDavidResult.png)
 * `find r/student` returns all persons with role of `student`
 * `find r/student t/math physics` returns all persons with role of `student` whose tags include either `math` or `physics`
 
+![findRoleTag.png](images/findRoleTag.png)
+
 ### Deleting a person : `delete`
 
-Deletes the specified person from the address book.
+Deletes the specified person from EduConnect.
 
 Format: `delete INDEX`
 
@@ -169,20 +169,20 @@ Format: `delete INDEX`
 * The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
-![exampleDelete.png](images/exampleDelete.png)
-
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
+* `list` followed by `delete 2` deletes the 2nd person in EduConnect.
 * `find n/Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+
+![exampleDelete.png](images/exampleDelete.png)
 
 ### Leaving a remark : `remark`
 
-Leaves a remark about the specified person from the address book.
+Leaves a remark about the specified person from EduConnect.
 
 Format: `remark INDEX rm/REMARK`
 
 * Leaves a remark about the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayer person list.
+* The index refers to the index number shown in the displayed person list.
 * Using `remark` again for the same person **overwrites** previous remark.
 
 Examples:
@@ -192,17 +192,18 @@ Examples:
 
 ### View detail of an entry: `view`
 
-View the detail of the specified person from the address book.
+View the detail of the specified person from EduConnect.
 
 Format: `view INDEX`
 
 * The result is displayed in the app as a list.
 * The index refers to the index number shown in the displayer person list.
+
 ![viewResult.png](images/viewResult.png)
 
 ### Add session: `addsession`
 
-Adds a session of the specified person from the address book.
+Adds a session of the specified person from EduConnect.
 
 Format: `addsession INDEX d/DAY ti/TIME`
 
@@ -223,7 +224,7 @@ Examples:
 
 ### Delete session: `deletesession`
 
-Deletes a session of the specified person from the address book.
+Deletes a session of the specified person from EduConnect.
 
 Format: `deletesession INDEX d/DAY ti/TIME`
 
@@ -232,7 +233,7 @@ Format: `deletesession INDEX d/DAY ti/TIME`
 * The index **must be a positive integer** 1, 2, 3, …​
 * The index referred to **must** be a `Student`.
 * The start time **must not be greater than** the end time.
-* The session aiming to delete **must already exist** (same start time, end time, and occuring day) for the student in order for the command to succeed.
+* The session aiming to delete **must already exist** (same start time, end time, and occurring day) for the student in order for the command to succeed.
 
 Examples:
 * `deletesession 1 d/Mon ti/3pm-5pm`
@@ -242,7 +243,7 @@ Examples:
 
 ### View session: `viewsession`
 
-View the session(s) of the specified day from the address book. 
+View the session(s) of the specified day from EduConnect. 
 
 The sessions will be returned in order, sorted by earliest start time.
 
@@ -258,17 +259,16 @@ Examples:
 * `viewsession d/Tues `
 * `viewsession d/Tuesday `
 
-
 The result is displayed in the app as a list.
 
 Examples:
 * `viewsession d/Mon`
 
-![viewSessionOutput.png](images/viewSessionOutput.png)
+![viewSessionExample.png](images/viewSessionExample.png)
 
 ### Editing a session : `editsession`
 
-Edits an existing session of a person in the address book.
+Edits an existing session of a person in EduConnect.
 
 Format: `editsession INDEX d/DAY ti/TIME nd/DAY nti/TIME`
 
@@ -287,7 +287,7 @@ Examples:
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the address book.
+Clears all entries from EduConnect.
 
 Format: `clear`
 
@@ -330,18 +330,18 @@ Furthermore, certain edits can cause the EduConnect to behave in unexpected ways
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER a/ADDRESS r/role [t/TAG] [par/PARENT]…​` <br> e.g., `add n/James Ho p/98776253 a/123, Clementi Rd, 1234665 r/student t/math par/Keith Ho`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [t/TAG] [par/PARENT]…​`<br> e.g.,`edit 2 n/James Lee`
-**Find** | `find [n/NAME] [r/ROLE] [t/TAG]`<br> e.g., `find n/James Jake`
-**Remark** | `remark INDEX rm/REMARK` <br> e.g., `remark 1 rm/hardworking`
-**View** | `view INDEX` <br> e.g., `view 2`
-**Add Session** | `addsession INDEX d/DAY ti/TIME` <br> e.g., `addsession 2 d/Mon ti/9am-5pm`
-**Delete Session** | `deletesession INDEX d/DAY ti/TIME` <br> e.g., `deletesession 2 d/Mon ti/9am-5pm`
-**View Session** | `viewsession d/DAY` <br> e.g., `viewsession d/Mon`
-**Edit Session** | `editsession INDEX d/DAY ti/TIME nd/DAY nti/TIME` <br> e.g., `editsession 2 d/Thur ti/9:30AM-11:45AM nd/Mon nti/9.30am-11.45am`
-**List** | `list`
-**Help** | `help`
+| Action             | Format, Examples                                                                                                                                                     |
+|--------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**            | `add n/NAME p/PHONE_NUMBER a/ADDRESS r/role [t/TAG] [par/PARENT]…​` <br> e.g., `add n/James Ho p/98776253 a/123, Clementi Rd, 1234665 r/student t/math par/Keith Ho` |
+| **Clear**          | `clear`                                                                                                                                                              |
+| **Delete**         | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                  |
+| **Edit**           | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [t/TAG] [par/PARENT]…​`<br> e.g.,`edit 2 n/James Lee`                                                              |
+| **Find**           | `find [n/NAME] [r/ROLE] [t/TAG]`<br> e.g., `find n/James Jake`                                                                                                       |
+| **Remark**         | `remark INDEX rm/REMARK` <br> e.g., `remark 1 rm/hardworking`                                                                                                        |
+| **View**           | `view INDEX` <br> e.g., `view 2`                                                                                                                                     |
+| **Add Session**    | `addsession INDEX d/DAY ti/TIME` <br> e.g., `addsession 2 d/Mon ti/9am-5pm`                                                                                          |
+| **Delete Session** | `deletesession INDEX d/DAY ti/TIME` <br> e.g., `deletesession 2 d/Mon ti/9am-5pm`                                                                                    |
+| **View Session**   | `viewsession d/DAY` <br> e.g., `viewsession d/Mon`                                                                                                                   |
+| **Edit Session**   | `editsession INDEX d/DAY ti/TIME nd/DAY nti/TIME` <br> e.g., `editsession 2 d/Thur ti/9:30AM-11:45AM nd/Mon nti/9.30am-11.45am`                                      |
+| **List**           | `list`                                                                                                                                                               |
+| **Help**           | `help`                                                                                                                                                               |
