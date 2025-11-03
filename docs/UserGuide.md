@@ -112,7 +112,7 @@ Format: `list`
 
 Edits an existing person in EduConnect.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [a/ADDRESS] [t/TAG]…`
+Format: `edit INDEX [n/NAME] [p/PHONE] [a/ADDRESS] [par/PARENT] [t/TAG]…`
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -328,7 +328,6 @@ Furthermore, certain edits can cause the EduConnect to behave in unexpected ways
 ## Known issues
 
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
-2. **If you minimize the Help Window** and then run the `help` command (or use the `Help` menu, or the keyboard shortcut `F1`) again, the original Help Window will remain minimized, and no new Help Window will appear. The remedy is to manually restore the minimized Help Window.
 
 --------------------------------------------------------------------------------------------------------------------
 
