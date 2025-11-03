@@ -190,7 +190,7 @@ Examples:
 
 ![exampleRemark.png](images/exampleRemark.png)
 
-### View detail of an entry: `view`
+### Viewing details of an entry: `view`
 
 View the detail of the specified person from EduConnect.
 
@@ -201,7 +201,7 @@ Format: `view INDEX`
 
 ![viewResult.png](images/viewResult.png)
 
-### Add session: `addsession`
+### Adding a session: `addsession`
 
 Adds a session of the specified person from EduConnect.
 
@@ -222,7 +222,7 @@ Examples:
 
 ![exampleAddsession.png](images/exampleAddsession.png)
 
-### Delete session: `deletesession`
+### Deleting a session: `deletesession`
 
 Deletes a session of the specified person from EduConnect.
 
@@ -241,7 +241,7 @@ Examples:
 
 ![exampleDeletesession.png](images/exampleDeletesession.png)
 
-### View session: `viewsession`
+### Viewing sessions in a day: `viewsession`
 
 View the session(s) of the specified day from EduConnect. 
 

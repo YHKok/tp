@@ -320,11 +320,11 @@ Ability to find by other fields other than name, role and tag
 
 ![User Story Table](images/userStoryTable.png)
 
-## Use cases
+### Use cases
 
 (For all use cases below, the **System** is `EduConnect` and the **Actor** is the `user`, unless specified otherwise.)
 
-### UC01 — Add a student contact
+#### UC01 — Add a student contact
 **Goal**: Create a new student entry with name, address, and phone.  
 **Precondition**: Application is running; storage is writable.  
 
@@ -341,7 +341,7 @@ Ability to find by other fields other than name, role and tag
   * 2b1. System warns about duplicate and aborts creation.  
     Use case ends.
 
-### UC02 — List all contacts
+#### UC02 — List all contacts
 **Goal**: Show every stored contact without filtering or sorting.  
 **Precondition**: Application is running.  
 
@@ -355,7 +355,7 @@ Ability to find by other fields other than name, role and tag
   * 2a1. System displays “no contacts” placeholder.  
     Use case ends.
 
-### UC03 — Find contacts by name/role/tags
+#### UC03 — Find contacts by name/role/tags
 **Goal**: Locate contacts by case-insensitive name matching, role and tags.  
 **Precondition**: At least one contact exists.  
 
@@ -370,7 +370,7 @@ Ability to find by other fields other than name, role and tag
   * 2a1. System shows empty result.  
   Use case ends.
 
-### UC04 — Delete a contact by index
+#### UC04 — Delete a contact by index
 **Goal**: Remove one contact referenced by the current visible index.  
 **Precondition**: At least one contact is visible (e.g., after `list` or `find`).  
 
@@ -388,7 +388,7 @@ Ability to find by other fields other than name, role and tag
   * 2a1. System rejects operation and asks user to refresh (`list`).  
     Use case ends.
 
-### UC05 — View help
+#### UC05 — View help
 **Goal**: Display user guide that contains command summaries and usage.  
 **Precondition**: Application is running.  
 
@@ -397,7 +397,7 @@ Ability to find by other fields other than name, role and tag
 2. System opens help window/panel with link to user guide.  
    Use case ends.
 
-### UC06 — Exit the application
+#### UC06 — Exit the application
 **Goal**: Close the application gracefully.  
 **Precondition**: Application is running.  
 
@@ -406,7 +406,7 @@ Ability to find by other fields other than name, role and tag
 2. System persists preferences, releases resources, and terminates.  
    Use case ends.
 
-### UC07 — Add remarks to contact
+#### UC07 — Add remarks to contact
 **Goal**: Add remarks for each contact to keep track of their learning progress and special requests.  
 **Precondition**: At least one contact exists.  
 
@@ -421,7 +421,7 @@ Ability to find by other fields other than name, role and tag
   * 1a1. System shows error and keeps list unchanged.  
     Use case ends.
 
-### UC08 — Delete remarks for contact
+#### UC08 — Delete remarks for contact
 **Goal**: Delete remarks for each contact to remove clutter.  
 **Precondition**: At least one contact exists.  
 
@@ -436,7 +436,7 @@ Ability to find by other fields other than name, role and tag
   * 1a1. System shows error and keeps list unchanged.  
     Use case ends.
 
-### UC09 — Add session to student
+#### UC09 — Add session to student
 **Goal**: Add session to update the classes the student is in.  
 **Precondition**: The student exists.  
 
@@ -460,7 +460,7 @@ Ability to find by other fields other than name, role and tag
   * 1b1. System warns about duplicate and aborts creation.  
     Use case ends.
 
-### UC10 — Delete a session for a student
+#### UC10 — Delete a session for a student
 **Goal**: Delete a tutoring session for a student that is no longer referenced/required.  
 **Precondition**: At least one student exists, and at least one session exists for such student.  
 
@@ -484,7 +484,7 @@ Ability to find by other fields other than name, role and tag
   * 1d1. System warns about nonexistence and aborts deletion.  
     Use case ends.
 
-### UC11 - Edit a student's session
+#### UC11 - Edit a student's session
 **Goal**: Edit a student's session to update the classes the student is in.  
 **Precondition**: The student exists.  
 
@@ -563,7 +563,7 @@ testers are expected to do more *exploratory* testing.
     1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-### Adding Person
+### Adding a Person
 
 1. **Adding a Parent**
    - **Prerequisites**: 
@@ -788,7 +788,7 @@ testers are expected to do more *exploratory* testing.
     1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
 
-### Add session to a student
+### Adding a session to a student
 
 1. Adding a session to a student while the contacts are being shown
 
@@ -803,7 +803,7 @@ testers are expected to do more *exploratory* testing.
     1. Other incorrect delete commands to try: `addsession`, `addsession x d/Mons ti/1pm-3pm`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
 
-### Delete session for a student
+### Deleting a session for a student
 
 1. Delete a session to a student while the contacts are being shown
 
