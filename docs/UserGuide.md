@@ -28,7 +28,7 @@ EduConnect is a desktop application that **helps tutors manage contact informati
 
    * `list` : Lists all contacts.
 
-   * `add n/John Doe p/98765432 a/John street, block 123, #01-01 r/student` : Adds a contact named `John Doe` to EduConnect.
+   * `add n/John Doe p/98765432 a/John street, block 123, #01-01 r/student` : Adds a student contact named `John Doe` to EduConnect.
 
    * `delete 3` : Deletes the 3rd contact shown in the current list.
 
@@ -50,10 +50,10 @@ EduConnect is a desktop application that **helps tutors manage contact informati
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/math` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/math`, `t/math t/science` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
@@ -68,10 +68,9 @@ EduConnect is a desktop application that **helps tutors manage contact informati
 
 Shows a message explaining how to access the help page.
 
-![helpMessage.png](images/helpMessage.png)
-
 Format: `help`
 
+![helpMessage.png](images/helpMessage.png)
 
 ### Adding a person: `add`
 
@@ -142,22 +141,23 @@ Finds persons whose information matches/contains given criteria.
 
 Format: `find [n/NAME] [r/ROLE] [t/TAG]`
 
-* The search is case-insensitive. e.g `n/hans` will match `Hans`
+* The search is case-insensitive. e.g. `n/hans` will match `Hans`
 * At least one of the parameters must be provided.
 * The order of the keywords does not matter. e.g. `n/Hans Bo` will match `Bo Hans`
 * Only the name or the role can be searched.
-* Only full words will be matched e.g. `n/Han` will not match `Hans`, `r/stu` will not match `student`
+* Only full words will be matched e.g. `n/Han` will not match `Hans`, `r/stu` will not match `student`, `t/mat` will not match `math`.
 * Persons matching all given parameters will be returned e.g. `find n/Alex r/student` will return all `student` named `Alex`
 * For each parameter, persons matching at least one keyword will be returned (i.e. `OR` search).
     e.g. `n/Hans Bo` will return `Hans Gruber`, `Bo Yang`
-* `find Alex` or `find whatever` will not work it will give the message `0 person listed`.
+* `find Alex` or `find whatever` will not work and system will return the message `0 person listed`.
 
 Examples:
 * `find n/John` returns `john` and `John Doe`
 * `find n/alex david` returns `Alex Yeoh`, `David Li`<br>
-![findAlexDavidResult.png](images/findAlexDavidResult.png)
 * `find r/student` returns all persons with role of `student`
 * `find r/student t/math physics` returns all persons with role of `student` whose tags include either `math` or `physics`
+
+![findRoleTag.png](images/findRoleTag.png)
 
 ### Deleting a person : `delete`
 
@@ -169,11 +169,11 @@ Format: `delete INDEX`
 * The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
-![exampleDelete.png](images/exampleDelete.png)
-
 Examples:
 * `list` followed by `delete 2` deletes the 2nd person in EduConnect.
 * `find n/Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+
+![exampleDelete.png](images/exampleDelete.png)
 
 ### Leaving a remark : `remark`
 
@@ -198,6 +198,7 @@ Format: `view INDEX`
 
 * The result is displayed in the app as a list.
 * The index refers to the index number shown in the displayer person list.
+
 ![viewResult.png](images/viewResult.png)
 
 ### Add session: `addsession`
@@ -258,13 +259,12 @@ Examples:
 * `viewsession d/Tues `
 * `viewsession d/Tuesday `
 
-
 The result is displayed in the app as a list.
 
 Examples:
 * `viewsession d/Mon`
 
-![viewSessionOutput.png](images/viewSessionOutput.png)
+![viewSessionExample.png](images/viewSessionExample.png)
 
 ### Editing a session : `editsession`
 
