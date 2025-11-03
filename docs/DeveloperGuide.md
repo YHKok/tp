@@ -10,9 +10,17 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* General: AI is used during coding as an auto-complete tool.
-* Loh Xian Jie: AI tools involving code reuse: [ChatGPT](https://chatgpt.com/) and [Gemini](https://gemini.google.com/app)
-  * Scope and Purpose: verify code correctness, standardize formatting, improve javadoc clarity, troubleshoot test files
+* General: AI is used during coding as an auto-complete tool, to help to standardize formatting, improve JavaDocs clarity and test files
+  * ChatGPT: https://chatgpt.com/
+  * Gemini: https://gemini.google.com/app
+* Gradle — build scripts and dependency management: https://gradle.org/
+* Jackson (FasterXML) — JSON read/write helpers: https://github.com/FasterXML/jackson
+* Jekyll - used to generate app website: https://jekyllrb.com/
+* JUnit 5 — unit testing framework: https://junit.org/junit5/
+* OpenJFX (JavaFX) — UI components and FXML usage: https://openjfx.io/
+* OpenJDK / Java 17 — target runtime: https://openjdk.org/
+* PlantUML — used to author sequence/class/activity diagrams: https://plantuml.com/
+* SE-EDU AddressBook Level 3 project — used as the primary template for architecture, componentization and many example snippets: https://github.com/se-edu/addressbook-level3
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -194,8 +202,10 @@ The following activity diagram summarizes what happens when a user executes a re
 For the Add Session command, only the standard day formats — Mon, Tue, Wed, Thur, Fri, Sat, Sun or their full forms 
 (e.g., Monday, Friday) are accepted to keep inputs consistent.
 
-However, the View Session command is more flexible and also recognizes Thu or
-Thurs for convenience.
+However, the View Session command is more flexible and also recognizes Thu or Thurs for convenience.
+
+Currently, the system does not allow overlapping sessions for the same student. A single student cannot be scheduled for two different sessions that overlap each other.
+However, adding the same session time among multiple students is allowed. This design facilitates the scheduling of group sessions where one tutor meets with several students simultaneously.
 
 The following activity diagram summarizes what happens when a user executes an add session command:
 
@@ -280,9 +290,6 @@ The command includes comprehensive error handling for cases such as:
 - Missing or invalid parameters
 - Non-existent session
 - Attempting to edit a non-student's session
-
-### \[Proposed\] Enhanced Find Command
-Ability to find by other fields other than name, role and tag
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -830,3 +837,17 @@ testers are expected to do more *exploratory* testing.
 
    1. Test case: `deletesession 2 d/Mon ti/2pm-4pm` (2nd contact is a parent)<br>
      Expected: No deletion occurs. Status message notes that such command is only for students.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Appendix: Planned Enhancements**
+
+### Enhance `Find` Command
+Ability to find by other fields other than name, role and tag.
+
+### Enhance `Edit` Command
+1. Allow users to directly edit the details of a contact's children when editing a contact with the `Parent` role.
+2. Allow users to clear or remove the parent/guardian name associated with a `Student` contact directly.
+
+### Improved day input flexibility inputs for `Addsession` Command
+Allow users to input session days with a wider variety of commonly used abbreviations (e.g. Tues, Thurs, Thu).
