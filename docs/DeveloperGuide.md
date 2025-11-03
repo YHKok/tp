@@ -20,7 +20,7 @@ title: Developer Guide
 * OpenJFX (JavaFX) — UI components and FXML usage: [https://openjfx.io/](https://openjfx.io/)
 * OpenJDK / Java 17 — target runtime: [https://openjdk.org/](https://openjdk.org/)
 * PlantUML — used to author sequence/class/activity diagrams: [https://plantuml.com/](https://plantuml.com/)
-* SE-EDU AddressBook Level 3 project — used as the primary template for architecture, componentization and many example snippets: https://github.com/se-edu/addressbook-level3
+* SE-EDU AddressBook Level 3 project — used as the primary template for architecture, componentization and many example snippets: [https://github.com/se-edu/addressbook-level3](https://github.com/se-edu/addressbook-level3)
 
 --------------------------------------------------------------------------------------------------------------------
 
