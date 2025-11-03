@@ -1,6 +1,7 @@
 package seedu.address.storage;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -27,6 +28,7 @@ import seedu.address.model.tag.Tag;
 class JsonAdaptedPerson {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
+    public static final String OVERLAP_SESSION_MESSAGE_FORMAT = "Person has an overlapping session";
 
     private final String name;
     private final String phone;
@@ -96,9 +98,22 @@ class JsonAdaptedPerson {
             personTags.add(tag.toModelType());
         }
 
-        final List<Session> personSessions = new ArrayList<>();
+        List<Session> personSessions = new ArrayList<>();
         for (JsonAdaptedSession session : sessions) {
             personSessions.add(session.toModelType());
+        }
+
+        personSessions = personSessions.stream().sorted(Comparator
+                .comparingInt((Session s) -> List.of("Mon", "Tue", "Wed", "Thur", "Fri", "Sat", "Sun")
+                        .indexOf(s.getDay().getValue()))
+                .thenComparingInt(s -> s.getTime().getStartMinutes())).toList();
+
+        for (int i = 0; i < personSessions.size() - 1; i++) {
+            Session a = personSessions.get(i);
+            Session b = personSessions.get(i + 1);
+            if (a.isOverlap(b)) {
+                throw new IllegalValueException(OVERLAP_SESSION_MESSAGE_FORMAT);
+            }
         }
 
         if (name == null) {

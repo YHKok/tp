@@ -215,6 +215,9 @@ Format: `addsession INDEX d/DAY ti/TIME`
 * The start time **must not be greater than** the end time.
 * The result is displayed in the app as a list.
 * The session to be added **must not overlap** with another session for the same student.
+* You cannot add a duplicated/overlap session to a student into EduConnect.
+  * Definition of Duplicated session: A duplicated session is one that occurs on the same day with the same start and end times.
+  * Definition of an Overlap session: An overlapping session is one that occurs on the same day and has a start or end time that conflicts with another session’s start or end time.
 * Refer [here](DeveloperGuide.md#add-session-feature) for more information.
 
 Examples:
