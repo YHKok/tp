@@ -116,7 +116,7 @@ public class EditSessionCommand extends Command {
         }
 
         // Check if the new session overlaps with *any other* existing session.
-        for (Session existingSession : personToEdit.getSessions()) {
+        for (Session existingSession : updatedSessions) {
             if (existingSession.isOverlap(newSession)) {
                 throw new CommandException(MESSAGE_OVERLAPPING_SESSION);
             }
