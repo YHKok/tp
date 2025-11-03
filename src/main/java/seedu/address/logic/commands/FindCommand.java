@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.function.Predicate;
 
@@ -25,10 +26,10 @@ public class FindCommand extends Command {
     public static final String COMMAND_WORD = "find";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose names contain any of "
-            + "the specified keywords (case-insensitive) and of a certain role"
+            + "the specified keywords (case-insensitive) or has a certain role or has any of the specified tags"
             + " and displays them as a list with index numbers.\n"
-            + "Parameters: " + "[" + PREFIX_NAME + "NAME" + "]" + "[" + PREFIX_ROLE + "ROLE" + "]\n"
-            + "Example: " + COMMAND_WORD + " " + PREFIX_NAME + "alice " + PREFIX_ROLE + "student";
+            + "Parameters: " + "[" + PREFIX_NAME + "NAME" + "]" + "[" + PREFIX_ROLE + "ROLE" + "]" + "[" + PREFIX_TAG + "TAGS" + "]\n"
+            + "Example: " + COMMAND_WORD + " " + PREFIX_NAME + "alice " + PREFIX_ROLE + "student " + PREFIX_TAG + "math physics";
 
     private final NameContainsKeywordsPredicate namePredicate;
     private final RoleContainsKeywordsPredicate rolePredicate;
