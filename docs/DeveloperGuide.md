@@ -259,7 +259,7 @@ Given below is an example usage scenario and how the edit session mechanism beha
 
 #### Activity Diagram
 
-![EditCommandActivityDiagram.png](images/EditCommandActivityDiagram.png)
+![EditSessionCommandActivityDiagram.png](images/EditSessionCommandActivityDiagram.png)
 
 #### Design Considerations
 

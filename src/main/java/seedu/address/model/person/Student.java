@@ -133,6 +133,9 @@ public class Student extends Person {
     public void setParent(Parent parent) {
         myParent = parent;
     }
+    public Parent getParent() {
+        return myParent;
+    }
 
     /**
      * Returns true if both persons have the same identity and data fields.

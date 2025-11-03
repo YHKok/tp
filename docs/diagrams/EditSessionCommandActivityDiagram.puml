@@ -28,7 +28,7 @@ alt Index valid
     ESC ->> Model : setPerson(oldStudent, newStudent)
     ESC ->> Model : updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS)
 else Index invalid
-    ESC --x User : CommandException
+    ESC -->> User : CommandException
 end
 
 ESC -->> User : CommandResult

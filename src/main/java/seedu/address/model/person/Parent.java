@@ -56,6 +56,9 @@ public class Parent extends Person {
     public boolean hasChildName(Name name) {
         return childrenNames.contains(name);
     }
+    public Set<Name> getChildrenNames() {
+        return Set.copyOf(childrenNames);
+    }
 
     /**
      * Links a given Student to this Parent.
@@ -83,10 +86,6 @@ public class Parent extends Person {
 
     public Set<Student> getChildren() {
         return Set.copyOf(children);
-    }
-
-    public Set<Name> getChildrenNames() {
-        return Set.copyOf(childrenNames);
     }
 
     /**
