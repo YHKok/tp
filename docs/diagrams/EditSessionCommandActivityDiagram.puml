@@ -2,10 +2,10 @@
 title EditSessionCommand Sequence Diagram
 
 actor User
-participant Parser as "AddressBookParser"
-participant ESCParser as "EditSessionCommandParser"
-participant ESC as "EditSessionCommand"
-participant Model
+participant Parser as ":AddressBookParser"
+participant ESCParser as ":EditSessionCommandParser"
+participant ESC as ":EditSessionCommand"
+participant Model as ":Model"
 
 User ->> Parser : editsession 1 d/Mon ti/12pm-1pm d/Tue ti/1pm-2pm
 activate Parser

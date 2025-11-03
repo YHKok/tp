@@ -28,11 +28,12 @@ public class AddressTest {
         assertFalse(Address.isValidAddress("")); // empty string
         assertFalse(Address.isValidAddress(" ")); // spaces only
         assertFalse(Address.isValidAddress("-")); // one character
-        assertFalse(Address.isValidAddress("Blk 4, Den, #01-3")); //too short
+        assertFalse(Address.isValidAddress("Ubi")); //too short
         assertFalse(Address.isValidAddress("Leng Inc; 1234 Market St; "
                 + "San Francisco CA 2349879; USA")); // invalid special characters
-        assertFalse(Address.isValidAddress("Leng Inc, 123131424456789 Market Street, San Francisco CA 2346, "
-                + "UNITED STATES OF AMERICA")); // long address
+        assertFalse(Address.isValidAddress("Leng Incorporation, 123131424456712124152354365635389 Market Street, "
+                + "San Francisco CA 234615123625612341245152162513131232131251323621232323232323232323232323124246373, "
+                + "UNITED STATES OF AMERICA, SAIKFKAHWIOHTOWEOERWIOENDADASDasdasdsadsadsadasdasdASF")); // long address
 
         // valid addresses
         assertTrue(Address.isValidAddress("Blk 456, Denver Road, #01-355"));

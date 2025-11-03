@@ -1,14 +1,14 @@
 @startuml
 'https://plantuml.com/activity-diagram-beta
 skin rose
-skinparam ActivityFontSize 16
-skinparam ArrowFontSize 14
+skinparam ActivityFontSize 15
+skinparam ArrowFontSize 12
 skinparam wrapWidth 125
 
 start
 :User executes delete session command;
 if () then ([Person index given is a positive integer])
-    if () then (Day/time format given is valid])
+    if () then ([Day/time format given is valid])
         if () then ([Person index given is not larger than list size])
             if () then ([Person referenced is student])
                 if () then ([Session given exists])

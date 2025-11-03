@@ -1,6 +1,7 @@
 package seedu.address.ui;
 
 import java.util.Comparator;
+import java.util.List;
 
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
@@ -9,6 +10,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Session;
 import seedu.address.model.person.Student;
 
 /**
@@ -67,7 +69,10 @@ public class PersonCard extends UiPart<Region> {
                         tagLabel.getStyleClass().add(styleClass);
                         tags.getChildren().add(tagLabel);
                     });
-            student.getSessions().stream()
+            student.getSessions().stream().sorted(Comparator
+                            .comparingInt((Session s) -> List.of("Mon", "Tue", "Wed", "Thur", "Fri", "Sat", "Sun")
+                                    .indexOf(s.getDay().getValue()))
+                            .thenComparingInt(s -> s.getTime().getStartMinutes()))
                     .forEach(s -> {
                         Label sessionLabel = new Label(s.toString().toLowerCase());
                         sessionLabel.getStyleClass().add("session-box");

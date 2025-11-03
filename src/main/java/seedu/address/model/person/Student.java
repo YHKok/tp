@@ -83,6 +83,18 @@ public class Student extends Person {
     }
 
     /**
+     * Clones a student with a new remark
+     * @param student
+     * @param remark
+     */
+    public Student(Student student, Remark remark) {
+        super(student.name, student.phone, student.address, Role.STUDENT_ROLE, remark);
+        this.sessions = Set.copyOf(student.getSessions());
+        this.tags.addAll(Set.copyOf(student.tags));
+        this.myParent = student.myParent;
+        this.parentName = student.parentName;
+    }
+    /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
@@ -120,6 +132,9 @@ public class Student extends Person {
 
     public void setParent(Parent parent) {
         myParent = parent;
+    }
+    public Parent getParent() {
+        return myParent;
     }
 
     /**

@@ -5,9 +5,11 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -34,6 +36,11 @@ public class FindCommandParser implements Parser<FindCommand> {
 
         String trimmedArgs = args.trim();
 
+        if (trimmedArgs.isEmpty()) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+        }
+
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(" " + trimmedArgs,
                 PREFIX_NAME, PREFIX_ROLE, PREFIX_TAG);
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_ROLE, PREFIX_TAG);
@@ -56,20 +63,21 @@ public class FindCommandParser implements Parser<FindCommand> {
         }
         NameContainsKeywordsPredicate namePredicate = new NameContainsKeywordsPredicate(name);
 
-        List<String> role = argMultimap.getValue(PREFIX_ROLE)
-                .map(value -> Arrays.stream(value.split("\\s+"))
-                        .filter(part -> !part.isEmpty())
-                        .map(part -> {
-                            try {
-                                return ParserUtil.parseRole(part).role;
-                            } catch (ParseException e) {
-                                throw new RuntimeException(e);
-                            }
-                        })
-                        .toList())
-                .orElse(Collections.emptyList());
+        Optional<String> maybeValue = argMultimap.getValue(PREFIX_ROLE);
+        List<String> role = new ArrayList<>();
 
-        if (argMultimap.getValue(PREFIX_ROLE).isPresent() && role.isEmpty()) {
+        if (!maybeValue.isEmpty()) {
+            String value = maybeValue.get();
+            String[] parts = value.split("\\s+");
+
+            for (String part : parts) {
+                if (!part.isEmpty()) {
+                    role.add(ParserUtil.parseRole(part).role); // can throw ParseException
+                }
+            }
+        }
+
+        if (maybeValue.isPresent() && role.isEmpty()) {
             throw new ParseException(Role.MESSAGE_CONSTRAINTS);
         }
 
@@ -94,12 +102,6 @@ public class FindCommandParser implements Parser<FindCommand> {
 
         TagContainsKeywordsPredicate tagPredicate = new TagContainsKeywordsPredicate(tag);
 
-        if (trimmedArgs.isEmpty()) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
-        }
-
         return new FindCommand(namePredicate, rolePredicate, tagPredicate);
     }
-
 }

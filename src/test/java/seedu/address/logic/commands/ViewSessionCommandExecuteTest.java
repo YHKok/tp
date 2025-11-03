@@ -24,6 +24,7 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Day;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Parent;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Remark;
@@ -180,6 +181,16 @@ public class ViewSessionCommandExecuteTest {
 
         @Override
         public void linkParent(Student student) {
+            // not used here
+        }
+
+        @Override
+        public void destroyStudentLinks(Parent parent) {
+            // not used here
+        }
+
+        @Override
+        public void destroyParentLink(Student student) {
             // not used here
         }
 
