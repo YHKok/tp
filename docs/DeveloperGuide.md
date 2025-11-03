@@ -199,13 +199,13 @@ The following activity diagram summarizes what happens when a user executes an a
 
 ![AddSessionActivityDiagram](images/AddSessionActivityDiagram.png)
 
-### Delete session feature
+### Delete Session feature
 
 The following activity diagram summarizes what happens when a user executes a delete session command:
 
 ![DeleteSessionActivityDiagram](images/DeleteSessionActivityDiagram.png)
 
-### View session (day-only)
+### View Session feature (day-only)
 
 To give more flexibility, we will allow 
 
@@ -269,7 +269,7 @@ Given below is an example usage scenario and how the edit session mechanism beha
 
 * **Alternative 2:** Modify the existing Student object
     * Pros: Better performance as no new object is created
-    * Cons: Mutable state can lead to bugs in a multi-threaded environment
+    * Cons: Mutable state can lead to bugs in a multithreaded environment
 
 **Aspect: Error handling:**
 
@@ -327,7 +327,7 @@ Ability to find by other fields other than name, role and tag
 **Precondition**: Application is running; storage is writable.  
 
 **Main Success Scenario (MSS)**
-1. User enters `add n/NAME a/ADDRESS p/PHONE`.
+1. User enters `add n/NAME a/ADDRESS p/PHONE r/student`.
 2. System validates fields and creates the contact.
 3. System confirms creation and displays the new contact.  
    Use case ends.  
@@ -353,12 +353,12 @@ Ability to find by other fields other than name, role and tag
   * 2a1. System displays “no contacts” placeholder.  
     Use case ends.
 
-### UC03 — Find contacts by name/role
+### UC03 — Find contacts by name/role/tags
 **Goal**: Locate contacts by case-insensitive name matching or role.  
 **Precondition**: At least one contact exists.  
 
 **MSS**
-1. User enters `find n/NAME` or `find r/ROLE` or `find n/NAME r/ROLE`.
+1. User enters `find n/NAME` or `find r/ROLE` or `find n/NAME r/ROLE` or `find t/TAG`.
 2. System filters contacts whose names/role contain all provided keywords.
 3. System displays the filtered list with new indices.  
    Use case ends.  
@@ -616,8 +616,8 @@ testers are expected to do more *exploratory* testing.
    5. Test Case - Adding a Student with a non-existent Parent
       <br>`add n/Germaine Lee p/98927376 a/334 Aljunied Street Road #02-02 r/student par/Nonexistent Parent`
       <br>Expected:
-      - Error Message: "This parent does not exist in the address book"
-      - Invalid person is **not added** to the address book.
+      - Error Message: "This parent does not exist in the EduConnect."
+      - Invalid person is **not added** to the EduConnect.
    6. Test Case - Adding a Student with an Invalid Parent
       <br>`add n/Germaine Lee p/98927376 a/334 Aljunied Street Road #02-02 r/student par/3`
       <br>Expected:
@@ -637,7 +637,7 @@ testers are expected to do more *exploratory* testing.
    2. Test Case - Adding a Person with an Invalid Phone Number (Failure)
       <br>`add n/Lim Boon Kee p/12345 a/19 Orchard Road, #03-04 r/student`
       <br>Expected:
-       - Error Message: "Phone numbers should only contain numbers, start with 8 or 9 and it should be 8 digits long"
+       - Error Message: "Phone numbers should only contain numbers, start with 8 or 9, and it should be 8 digits long"
        - Invalid person is **not added** to EduConnect.
    3. Test Case - Adding a Person with an Invalid Name (Failure)
       <br>`add n/@@@### p/98761234 a/21 Serangoon Avenue 1, #02-17 r/parent`
@@ -652,7 +652,7 @@ testers are expected to do more *exploratory* testing.
    5. Test Case - Adding a Duplicate Person (Failure)
       <br>`add n/Klaus Tay p/99837264 a/Cruise Centre 1 Maritime Square #02-127, 099253 r/parent`
       <br>Expected:
-       - Error Message: "This person already exists in the address book"
+       - Error Message: "This person already exists in EduConnect."
        - Invalid person is **not added** to EduConnect.
 
 ### Editing a Person
@@ -662,7 +662,7 @@ testers are expected to do more *exploratory* testing.
 
 1. **Editing a Parent**
    - Note: **ALL** the test cases in this section **MUST** be performed on a Parent contact or the results cannot be guaranteed.
-   - **Please replace the `<INDEX>` portion of the test case with a valid index of a Parent contact in your copy of the address book before running the test case.**
+   - **Please replace the `<INDEX>` portion of the test case with a valid index of a Parent contact in your copy of EduConnect before running the test case.**
    - **Prerequisites**:
      1. There must be 1 existing Parent contact in EduConnect.
    1. Test Case - Editing a Parent to add Tags (Failure)
@@ -702,7 +702,7 @@ testers are expected to do more *exploratory* testing.
    4. Test Case - Editing a Student's Parent to a non-existent Parent (Failure)
       <br>`edit <INDEX> par/Nonexistent Parent`
       <br>Expected:
-      - Error Message: "This parent does not exist in the address book"
+      - Error Message: "This parent does not exist in the EduConnect."
       - The specified Parent does not exist in EduConnect.
       - No changes are made.
 
