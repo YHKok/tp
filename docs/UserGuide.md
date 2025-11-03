@@ -144,18 +144,19 @@ Format: `find [n/NAME] [r/ROLE] [t/TAG]`
 * The search is case-insensitive. e.g. `n/hans` will match `Hans`
 * At least one of the parameters must be provided.
 * The order of the keywords does not matter. e.g. `n/Hans Bo` will match `Bo Hans`
-* Only the name or the role can be searched.
+* Only the name, role and tag can be searched.
 * Only full words will be matched e.g. `n/Han` will not match `Hans`, `r/stu` will not match `student`, `t/mat` will not match `math`.
 * Persons matching all given parameters will be returned e.g. `find n/Alex r/student` will return all `student` named `Alex`
 * For each parameter, persons matching at least one keyword will be returned (i.e. `OR` search).
     e.g. `n/Hans Bo` will return `Hans Gruber`, `Bo Yang`
 * `find Alex` or `find whatever` will not work and system will return the message `0 person listed`.
+* `find r/student t/math physics` returns all persons with role of `student` whose tags include either `math` or `physics`
+  * This applies to `n/` and `r/` as well.
 
 Examples:
 * `find n/John` returns `john` and `John Doe`
 * `find n/alex david` returns `Alex Yeoh`, `David Li`<br>
 * `find r/student` returns all persons with role of `student`
-* `find r/student t/math physics` returns all persons with role of `student` whose tags include either `math` or `physics`
 
 ![findRoleTag.png](images/findRoleTag.png)
 
