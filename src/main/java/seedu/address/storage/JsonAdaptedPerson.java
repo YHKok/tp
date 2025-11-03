@@ -28,7 +28,7 @@ import seedu.address.model.tag.Tag;
 class JsonAdaptedPerson {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
-    public static final String OVERLAP_SESSION_MESSAGE_FORMAT = "Person has a overlap session";
+    public static final String OVERLAP_SESSION_MESSAGE_FORMAT = "Person has an overlapping session";
 
     private final String name;
     private final String phone;
