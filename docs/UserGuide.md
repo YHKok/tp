@@ -210,8 +210,10 @@ Format: `addsession INDEX d/DAY ti/TIME`
 * Adds a session about the student at the specified `INDEX`.
 * A student can have any number of sessions (including 0).
 * The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
-* The index referred to **must** be a `Student`.
+  * The index **must be a positive integer** 1, 2, 3, …​
+  * The index referred to **must** be a `Student` contact.
+* DAY should be one of the following options: Mon, Tue, Wed, Thur, Fri, Sat, Sun, or their full forms (e.g., Monday, Friday).
+* TIME should be in 12-hour format without leading zeros, e.g., 3pm-5pm or 9:30AM-11:45AM.
 * The start time **must not be greater than** the end time.
 * The result is displayed in the app as a list.
 * The session to be added **must not overlap** with another session for the same student.
@@ -234,8 +236,8 @@ Format: `deletesession INDEX d/DAY ti/TIME`
 
 * Deletes a session about the person at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
-* The index referred to **must** be a `Student`.
+  * The index **must be a positive integer** 1, 2, 3, …​
+  * The index referred to **must** be a `Student` contact.
 * The start time **must not be greater than** the end time.
 * The session aiming to delete **must already exist** (same start time, end time, and occurring day) for the student in order for the command to succeed.
 
@@ -278,8 +280,8 @@ Format: `editsession INDEX d/DAY ti/TIME nd/DAY nti/TIME`
 
 * Edits the session of the person at the specified `INDEX`. 
 * The index refers to the index number shown in the displayed person list. 
-* The index **must be a positive integer** 1, 2, 3, …​
-* The index referred to **must** be a `Student`.
+  * The index **must be a positive integer** 1, 2, 3, …​
+  * The index referred to **must** be a `Student` contact.
 * Existing values will be updated to the input values specified by `nd/` and `nti/`.
 * The start time must not be greater than the end time.
 
