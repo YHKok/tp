@@ -112,7 +112,7 @@ Format: `list`
 
 Edits an existing person in EduConnect.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [a/ADDRESS] [t/TAG]…`
+Format: `edit INDEX [n/NAME] [p/PHONE] [a/ADDRESS] [par/PARENT] [t/TAG]…`
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -144,18 +144,19 @@ Format: `find [n/NAME] [r/ROLE] [t/TAG]`
 * The search is case-insensitive. e.g. `n/hans` will match `Hans`
 * At least one of the parameters must be provided.
 * The order of the keywords does not matter. e.g. `n/Hans Bo` will match `Bo Hans`
-* Only the name or the role can be searched.
+* Only the name, role and tag can be searched.
 * Only full words will be matched e.g. `n/Han` will not match `Hans`, `r/stu` will not match `student`, `t/mat` will not match `math`.
 * Persons matching all given parameters will be returned e.g. `find n/Alex r/student` will return all `student` named `Alex`
 * For each parameter, persons matching at least one keyword will be returned (i.e. `OR` search).
     e.g. `n/Hans Bo` will return `Hans Gruber`, `Bo Yang`
 * `find Alex` or `find whatever` will not work and system will return the message `0 person listed`.
+* `find r/student t/math physics` returns all persons with role of `student` whose tags include either `math` or `physics`
+  * This applies to `n/` and `r/` as well.
 
 Examples:
 * `find n/John` returns `john` and `John Doe`
 * `find n/alex david` returns `Alex Yeoh`, `David Li`<br>
 * `find r/student` returns all persons with role of `student`
-* `find r/student t/math physics` returns all persons with role of `student` whose tags include either `math` or `physics`
 
 ![findRoleTag.png](images/findRoleTag.png)
 
@@ -330,7 +331,6 @@ Furthermore, certain edits can cause the EduConnect to behave in unexpected ways
 ## Known issues
 
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
-2. **If you minimize the Help Window** and then run the `help` command (or use the `Help` menu, or the keyboard shortcut `F1`) again, the original Help Window will remain minimized, and no new Help Window will appear. The remedy is to manually restore the minimized Help Window.
 
 --------------------------------------------------------------------------------------------------------------------
 
