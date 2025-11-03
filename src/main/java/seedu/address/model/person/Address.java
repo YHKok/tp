@@ -18,7 +18,7 @@ public class Address {
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "^[\\s\\p{Alnum}#,.-]{20,80}$";
+    public static final String VALIDATION_REGEX = "^[\\s\\p{Alnum}#,.-]{10,200}$";
 
     public final String value;
 
