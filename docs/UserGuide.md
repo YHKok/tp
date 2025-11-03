@@ -213,8 +213,9 @@ Format: `addsession INDEX d/DAY ti/TIME`
 * The index **must be a positive integer** 1, 2, 3, …​
 * The index referred to **must** be a `Student`.
 * The start time **must not be greater than** the end time.
-* The session to be added **must not overlap** another session for this particular student.
 * The result is displayed in the app as a list.
+* The session to be added **must not overlap** with another session for the same student.
+* Refer [here](DeveloperGuide.md#add-session-feature) for more information.
 
 Examples:
 * `addsession 1 d/Mon ti/3pm-5pm`
