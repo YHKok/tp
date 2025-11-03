@@ -109,17 +109,6 @@ public class UniquePersonList implements Iterable<Person> {
     }
 
     /**
-     * Links all Parents and Students in the list together.
-     * Used when loading data from the JSON file.
-     */
-    public void resolveAllParentLinks() {
-        internalList.stream()
-                .filter(p -> p instanceof Student)
-                .map(p -> (Student) p)
-                .filter(Student::hasParent)
-                .forEach(this::resolveParentLink);
-    }
-    /**
      * Destroys a link between a given Student and its specified Parent in the list.
      *
      * @param student
@@ -142,6 +131,17 @@ public class UniquePersonList implements Iterable<Person> {
                 });
     }
 
+    /**
+     * Links all Parents and Students in the list together.
+     * Used when loading data from the JSON file.
+     */
+    public void resolveAllParentLinks() {
+        internalList.stream()
+                .filter(p -> p instanceof Student)
+                .map(p -> (Student) p)
+                .filter(Student::hasParent)
+                .forEach(this::resolveParentLink);
+    }
     /**
      * Destroys a link between a given Student and its specified Parent in the list.
      *
