@@ -211,8 +211,11 @@ Format: `addsession INDEX d/DAY ti/TIME`
 * Adds a session about the student at the specified `INDEX`.
 * A student can have any number of sessions (including 0).
 * The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
-* The index referred to **must** be a `Student`.
+  * The index **must be a positive integer** 1, 2, 3, …​
+  * The index referred to **must** be a `Student` contact.
+* DAY should be one of the following options: Mon, Tue, Wed, Thur, Fri, Sat, Sun, or their full forms (e.g., Monday, Friday).
+* TIME should be in 12-hour format without leading zeros, e.g., 3pm-5pm or 9:30AM-11:45AM.
+  * When specifying minutes, use ':' and **NOT** '.', e.g. 12:45pm is allowed, but 12.45pm is NOT. 
 * The start time **must not be greater than** the end time.
 * The result is displayed in the app as a list.
 * The session to be added **must not overlap** with another session for the same student.
@@ -235,8 +238,8 @@ Format: `deletesession INDEX d/DAY ti/TIME`
 
 * Deletes a session about the person at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
-* The index referred to **must** be a `Student`.
+  * The index **must be a positive integer** 1, 2, 3, …​
+  * The index referred to **must** be a `Student` contact.
 * The start time **must not be greater than** the end time.
 * The session aiming to delete **must already exist** (same start time, end time, and occurring day) for the student in order for the command to succeed.
 
@@ -279,10 +282,13 @@ Format: `editsession INDEX d/DAY ti/TIME nd/DAY nti/TIME`
 
 * Edits the session of the person at the specified `INDEX`. 
 * The index refers to the index number shown in the displayed person list. 
-* The index **must be a positive integer** 1, 2, 3, …​
-* The index referred to **must** be a `Student`.
+  * The index **must be a positive integer** 1, 2, 3, …​
+  * The index referred to **must** be a `Student` contact.
 * Existing values will be updated to the input values specified by `nd/` and `nti/`.
-* The start time must not be greater than the end time.
+* DAY should be one of the following options: Mon, Tue, Wed, Thur, Fri, Sat, Sun, or their full forms (e.g., Monday, Friday).
+* TIME should be in 12-hour format without leading zeros, e.g., 3pm-5pm or 9:30AM-11:45AM.
+    * When specifying minutes, use ':' and **NOT** '.', e.g. 12:45pm is allowed, but 12.45pm is NOT.
+* The start time **must not be greater than** the end time.
 
 Examples:
 *  `editsession 1 d/Mon ti/3pm-5pm nd/Thur nti/9:30AM-11:45AM` Edits the session's day and time of the 1st person to be `Thur` and `9:30AM-11:45AM`.
@@ -313,7 +319,7 @@ EduConnect data are saved in the hard disk automatically after any command that 
 EduConnect data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, EduConnect will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
+If your changes to the data file makes its format invalid, EduConnect will discard all data and start with the default sample data on the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
 Furthermore, certain edits can cause the EduConnect to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </div>
 
@@ -346,6 +352,6 @@ Furthermore, certain edits can cause the EduConnect to behave in unexpected ways
 | **Add Session**    | `addsession INDEX d/DAY ti/TIME` <br> e.g., `addsession 2 d/Mon ti/9am-5pm`                                                                                          |
 | **Delete Session** | `deletesession INDEX d/DAY ti/TIME` <br> e.g., `deletesession 2 d/Mon ti/9am-5pm`                                                                                    |
 | **View Session**   | `viewsession d/DAY` <br> e.g., `viewsession d/Mon`                                                                                                                   |
-| **Edit Session**   | `editsession INDEX d/DAY ti/TIME nd/DAY nti/TIME` <br> e.g., `editsession 2 d/Thur ti/9:30AM-11:45AM nd/Mon nti/9.30am-11.45am`                                      |
+| **Edit Session**   | `editsession INDEX d/DAY ti/TIME nd/DAY nti/TIME` <br> e.g., `editsession 2 d/Thur ti/9:30AM-11:45AM nd/Mon nti/9:30am-11:45am`                                      |
 | **List**           | `list`                                                                                                                                                               |
 | **Help**           | `help`                                                                                                                                                               |
