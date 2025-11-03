@@ -114,6 +114,7 @@ public class UniquePersonListTest {
     @Test
     public void resolveParentLink_studentAndExistingParent_parentChildrenUpdated() {
         uniquePersonList.add(CHARLES);
+        uniquePersonList.add(JAMES);
         uniquePersonList.resolveParentLink(JAMES);
         assertTrue(CHARLES.hasChild(JAMES));
         assertTrue(CHARLES.hasChildName(JAMES.getName()));
@@ -135,6 +136,7 @@ public class UniquePersonListTest {
     @Test
     public void destroyParentLink_existingStudentAndExistingParent_parentChildrenRemoved() {
         uniquePersonList.add(CHARLES);
+        uniquePersonList.add(JAMES);
         uniquePersonList.resolveParentLink(JAMES);
         assertTrue(CHARLES.hasChild(JAMES));
         assertTrue(CHARLES.hasChildName(JAMES.getName()));
