@@ -496,7 +496,7 @@ The command includes comprehensive error handling for cases such as:
 **Precondition**: The student exists.  
 
 **MSS**
-1. Tutor requests to edit a session for a specific student by providing the student's index, old session details (day and time), and new session details (new day and time).
+1. User enters `editsession I d/DAY ti/TIME nd/DAY nti/TIME` where `I` is a 1-based index in the current list. 
 2. System updates the student's session with the new details.
 3. System displays a success message confirming the session was edited  
    Use case ends.
