@@ -11,16 +11,16 @@ title: Developer Guide
 ## **Acknowledgements**
 
 * General: AI is used during coding as an auto-complete tool, to help to standardize formatting, improve JavaDocs clarity and test files
-  * ChatGPT: https://chatgpt.com/
-  * Gemini: https://gemini.google.com/app
-* Gradle — build scripts and dependency management: https://gradle.org/
-* Jackson (FasterXML) — JSON read/write helpers: https://github.com/FasterXML/jackson
-* Jekyll - used to generate app website: https://jekyllrb.com/
-* JUnit 5 — unit testing framework: https://junit.org/junit5/
-* OpenJFX (JavaFX) — UI components and FXML usage: https://openjfx.io/
-* OpenJDK / Java 17 — target runtime: https://openjdk.org/
-* PlantUML — used to author sequence/class/activity diagrams: https://plantuml.com/
-* SE-EDU AddressBook Level 3 project — used as the primary template for architecture, componentization and many example snippets: https://github.com/se-edu/addressbook-level3
+  * ChatGPT: [https://chatgpt.com/](https://chatgpt.com/)
+  * Gemini: [https://gemini.google.com/app](https://gemini.google.com/app)
+* Gradle — build scripts and dependency management: [https://gradle.org/](https://gradle.org/)
+* Jackson (FasterXML) — JSON read/write helpers: [https://github.com/FasterXML/jackson](https://github.com/FasterXML/jackson)
+* Jekyll - used to generate app website: [https://jekyllrb.com/](https://jekyllrb.com/)
+* JUnit 5 — unit testing framework: [https://junit.org/junit5/](https://junit.org/junit5/)
+* OpenJFX (JavaFX) — UI components and FXML usage: [https://openjfx.io/](https://openjfx.io/)
+* OpenJDK / Java 17 — target runtime: [https://openjdk.org/](https://openjdk.org/)
+* PlantUML — used to author sequence/class/activity diagrams: [https://plantuml.com/](https://plantuml.com/)
+* SE-EDU AddressBook Level 3 project — used as the primary template for architecture, componentization and many example snippets: [https://github.com/se-edu/addressbook-level3](https://github.com/se-edu/addressbook-level3)
 
 --------------------------------------------------------------------------------------------------------------------
 
