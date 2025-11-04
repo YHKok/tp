@@ -267,7 +267,7 @@ Given below is an example usage scenario and how the edit session mechanism beha
     - Replaces the original student with the updated one in the model
     - Updates the filtered person list
 
-#### Activity Diagram
+#### Sequence Diagram
 
 ![EditSessionCommandActivityDiagram.png](images/EditSessionCommandActivityDiagram.png)
 
